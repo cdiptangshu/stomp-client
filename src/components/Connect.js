@@ -39,10 +39,11 @@ export default function Connect() {
             return errors;
         },
         onSubmit: (data) => {
-            console.log('connecting...');
+            console.time('connect time');
             data && show();
             setConnected(true);
-            console.log('connected');
+            console.timeEnd('connect time');
+            console.time('connection duration');
         }
     });
 
@@ -57,6 +58,7 @@ export default function Connect() {
             formik.submitForm();
         } else {
             setConnected(false);
+            console.timeEnd('connection duration');
         }
     };
 
