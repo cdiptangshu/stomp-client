@@ -2,16 +2,14 @@
 import React, { useRef, useState } from "react";
 import { useFormik } from 'formik';
 import { InputText } from "primereact/inputtext";
-import { Button } from 'primereact/button';
-// import { ToggleButton } from 'primereact/togglebutton';
+import { ToggleButton } from 'primereact/togglebutton';
 import { Toast } from 'primereact/toast';
 import { Panel } from 'primereact/panel';
 import { classNames } from 'primereact/utils';
 
 export default function Connect() {
-    // const [connected, setConnected] = useState(false);
-    // const [checked, setChecked] = useState(false);
     const toast = useRef(null);
+    const [connected, setConnected] = useState(false);
 
     const show = () => {
         toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: formik.values.endpoint });
@@ -30,9 +28,11 @@ export default function Connect() {
 
             return errors;
         },
-        onSubmit: (data) => {
-            data && show(data);
-            // setConnected(true);
+        onSubmit: (data) => {     
+            console.log('connecting...');       
+            data && show();
+            setConnected(true);
+            console.log('connected');
         }
     });
 
@@ -40,6 +40,14 @@ export default function Connect() {
 
     const getFormErrorMessage = (name) => {
         return isFormFieldInvalid(name) ? <small className="p-error">{formik.errors[name]}</small> : <small className="p-error">&nbsp;</small>;
+    };
+
+    const handleToggle = (connect) => {
+        if (connect) {
+            formik.submitForm();
+        } else {
+            setConnected(false);
+        }
     };
 
     return (
@@ -57,18 +65,18 @@ export default function Connect() {
                             formik.setFieldValue('endpoint', e.target.value);
                         }}
                         className={classNames('w-full', { 'p-invalid': isFormFieldInvalid('endpoint') })}
-                        // disabled={connected}
+                        disabled={connected}
+                        onFocus={(e) => e.target.select()}
                     />
                     {getFormErrorMessage('endpoint')}
-                    <Button type="submit" label="Connect" />
-                    {/* <ToggleButton 
-                        onLabel="Connected" 
-                        offLabel="Connect" 
-                        onIcon="pi pi-check" 
-                        offIcon="pi pi-times"
-                        checked={checked}
-                        onChange={(e) => setChecked(e.value)}
-                    /> */}
+                    <ToggleButton
+                        onLabel="Connected"
+                        offLabel="Connect"
+                        onIcon="pi pi-check"
+                        offIcon="pi pi-link"
+                        checked={connected}
+                        onChange={(e) => handleToggle(e.value)}
+                    />
                 </div>
             </form>
         </Panel>
