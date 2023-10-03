@@ -82,13 +82,13 @@ export default function Connect() {
                             onFocus={(e) => e.target.select()}
                         />
                         <ToggleButton
-                            onLabel="Connected"
-                            offLabel="Connect"
+                            onLabel=""
+                            offLabel=""
                             onIcon="pi pi-link"
                             offIcon="pi pi-link"
                             checked={connected}
                             onChange={(e) => handleToggle(e.value)}
-                            className="w-4"
+                            className="w-2"
                         />
                     </div>
                     {getFormErrorMessage('endpoint')}

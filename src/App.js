@@ -3,7 +3,7 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import Config from './components/Config';
-import Logs from './components/Logs';
+import Output from './components/Output';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
           <Config />
         </div>
         <div className="col-12 md:col-7">
-          <Logs />
+          <Output />
         </div>
       </div>
     </div>

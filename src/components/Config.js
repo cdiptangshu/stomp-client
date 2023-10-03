@@ -8,7 +8,7 @@ import Send from "./Send";
 export default function Config() {
     return (
         <div className="card">
-            <Card>
+            <Card title="Config">
                 <div className="grid">
                     <div className="col-12">
                         <Connect />
