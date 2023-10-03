@@ -6,6 +6,7 @@ import { ToggleButton } from 'primereact/togglebutton';
 import { Toast } from 'primereact/toast';
 import { Panel } from 'primereact/panel';
 import { classNames } from 'primereact/utils';
+import validator from 'validator';
 
 export default function Connect() {
     const toast = useRef(null);
@@ -22,14 +23,24 @@ export default function Connect() {
         validate: (data) => {
             let errors = {};
 
+
             if (!data.endpoint) {
                 errors.endpoint = 'Endpoint is required.';
             }
 
+
+            if (data.endpoint && !validator.isURL(data.endpoint, {
+                require_tld: false,
+                require_protocol: true,
+                protocols: ['ws', 'http', 'https']
+            })) {
+                errors.endpoint = 'Endpoint is not valid.';
+            }
+
             return errors;
         },
-        onSubmit: (data) => {     
-            console.log('connecting...');       
+        onSubmit: (data) => {
+            console.log('connecting...');
             data && show();
             setConnected(true);
             console.log('connected');
@@ -53,8 +64,16 @@ export default function Connect() {
     return (
         <Panel header="Connect">
             <Toast ref={toast} />
-            <form onSubmit={formik.handleSubmit} className="flex flex-column gap-2">
+            <form onSubmit={formik.handleSubmit}>
                 <div className="flex flex-column gap-2">
+                    <ToggleButton
+                        onLabel="Connected"
+                        offLabel="Connect"
+                        onIcon="pi pi-check"
+                        offIcon="pi pi-link"
+                        checked={connected}
+                        onChange={(e) => handleToggle(e.value)}
+                    />
                     <label htmlFor="endpoint">Endpoint</label>
                     <InputText
                         id="endpoint"
@@ -69,15 +88,7 @@ export default function Connect() {
                         onFocus={(e) => e.target.select()}
                     />
                     {getFormErrorMessage('endpoint')}
-                    <ToggleButton
-                        onLabel="Connected"
-                        offLabel="Connect"
-                        onIcon="pi pi-check"
-                        offIcon="pi pi-link"
-                        checked={connected}
-                        onChange={(e) => handleToggle(e.value)}
-                    />
-                </div>
+                </div>                
             </form>
         </Panel>
     )
