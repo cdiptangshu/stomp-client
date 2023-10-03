@@ -13,7 +13,7 @@ export default function Connect() {
     const [connected, setConnected] = useState(false);
 
     const show = () => {
-        toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: formik.values.endpoint });
+        toast.current.show({ severity: 'success', summary: 'Connected', detail: formik.values.endpoint });
     };
 
     const formik = useFormik({
@@ -66,27 +66,31 @@ export default function Connect() {
             <Toast ref={toast} />
             <form onSubmit={formik.handleSubmit}>
                 <div className="flex flex-column gap-2">
-                    <ToggleButton
-                        onLabel="Connected"
-                        offLabel="Connect"
-                        onIcon="pi pi-check"
-                        offIcon="pi pi-link"
-                        checked={connected}
-                        onChange={(e) => handleToggle(e.value)}
-                    />
+                    
                     <label htmlFor="endpoint">Endpoint</label>
-                    <InputText
-                        id="endpoint"
-                        name="endpoint"
-                        placeholder="ws://localhost:8080/websocket"
-                        value={formik.values.endpoint}
-                        onChange={(e) => {
-                            formik.setFieldValue('endpoint', e.target.value);
-                        }}
-                        className={classNames('w-full', { 'p-invalid': isFormFieldInvalid('endpoint') })}
-                        disabled={connected}
-                        onFocus={(e) => e.target.select()}
-                    />
+                    <div className="flex gap-2">
+                        <InputText
+                            id="endpoint"
+                            name="endpoint"
+                            placeholder="ws://localhost:8080/websocket"
+                            value={formik.values.endpoint}
+                            onChange={(e) => {
+                                formik.setFieldValue('endpoint', e.target.value);
+                            }}
+                            className={classNames('w-full', { 'p-invalid': isFormFieldInvalid('endpoint') })}
+                            disabled={connected}
+                            onFocus={(e) => e.target.select()}
+                        />
+                        <ToggleButton
+                            onLabel="Connected"
+                            offLabel="Connect"
+                            onIcon="pi pi-link"
+                            offIcon="pi pi-link"
+                            checked={connected}
+                            onChange={(e) => handleToggle(e.value)}
+                            className="w-4"
+                        />
+                    </div>
                     {getFormErrorMessage('endpoint')}
                 </div>                
             </form>
