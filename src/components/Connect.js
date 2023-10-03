@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from "react";
 import { useFormik } from 'formik';
 import { InputText } from "primereact/inputtext";
@@ -84,8 +83,8 @@ export default function Connect() {
                         <ToggleButton
                             onLabel=""
                             offLabel=""
-                            onIcon="pi pi-link"
-                            offIcon="pi pi-link"
+                            onIcon="pi pi-power-off"
+                            offIcon="pi pi-power-off"
                             checked={connected}
                             onChange={(e) => handleToggle(e.value)}
                             className="w-2"
