@@ -1,1 +1,6 @@
 @import-normalize;
+
+body {
+    background-color: var(--surface-ground);
+    color: var(--text-color);
+}
