@@ -1,36 +1,38 @@
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useFormik } from 'formik';
 import { InputText } from "primereact/inputtext";
-import { InputTextarea } from 'primereact/inputtextarea';
 import { Button } from 'primereact/button';
+// import { ToggleButton } from 'primereact/togglebutton';
 import { Toast } from 'primereact/toast';
 import { Panel } from 'primereact/panel';
 import { classNames } from 'primereact/utils';
 
 export default function Connect() {
+    // const [connected, setConnected] = useState(false);
+    // const [checked, setChecked] = useState(false);
     const toast = useRef(null);
 
     const show = () => {
-        toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: formik.values.value });
+        toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: formik.values.endpoint });
     };
 
     const formik = useFormik({
         initialValues: {
-            value: ''
+            endpoint: ''
         },
         validate: (data) => {
             let errors = {};
 
-            if (!data.value) {
-                errors.value = 'Name - Surname is required.';
+            if (!data.endpoint) {
+                errors.endpoint = 'Endpoint is required.';
             }
 
             return errors;
         },
         onSubmit: (data) => {
             data && show(data);
-            formik.resetForm();
+            // setConnected(true);
         }
     });
 
@@ -50,19 +52,23 @@ export default function Connect() {
                         id="endpoint"
                         name="endpoint"
                         placeholder="ws://localhost:8080/websocket"
-                        value={formik.values.value}
+                        value={formik.values.endpoint}
                         onChange={(e) => {
-                            formik.setFieldValue('value', e.target.value);
+                            formik.setFieldValue('endpoint', e.target.value);
                         }}
-                        className={classNames('w-full', { 'p-invalid': isFormFieldInvalid('value') })}
+                        className={classNames('w-full', { 'p-invalid': isFormFieldInvalid('endpoint') })}
+                        // disabled={connected}
                     />
-                    {getFormErrorMessage('value')}
-
-                    <label htmlFor="headers">Headers</label>
-                    <InputTextarea />
-                    {getFormErrorMessage('value')}
-
+                    {getFormErrorMessage('endpoint')}
                     <Button type="submit" label="Connect" />
+                    {/* <ToggleButton 
+                        onLabel="Connected" 
+                        offLabel="Connect" 
+                        onIcon="pi pi-check" 
+                        offIcon="pi pi-times"
+                        checked={checked}
+                        onChange={(e) => setChecked(e.value)}
+                    /> */}
                 </div>
             </form>
         </Panel>

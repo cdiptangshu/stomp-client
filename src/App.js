@@ -14,10 +14,10 @@ function App() {
       </div>
       <div className="grid">
         <div className="col-12 md:col-5">
-          <Config></Config>
+          <Config />
         </div>
         <div className="col-12 md:col-7">
-          <Logs></Logs>
+          <Logs />
         </div>
       </div>
     </div>

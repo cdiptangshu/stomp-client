@@ -8,16 +8,16 @@ import Send from "./Send";
 export default function Config() {
     return (
         <div className="card">
-            <Card title="Config">
+            <Card>
                 <div className="grid">
                     <div className="col-12">
-                        <Connect></Connect>
+                        <Connect />
                     </div>
                     <div className="col-12">
-                        <Subscribe></Subscribe>
+                        <Subscribe />
                     </div>
                     <div className="col-12">
-                        <Send></Send>
+                        <Send />
                     </div>
                 </div>
             </Card>
