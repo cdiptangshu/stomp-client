@@ -1,0 +1,7 @@
+version: '3.9'
+services:
+  stomp-ui:
+    build: .
+    ports:
+      - "9000:80"
+    tty: true
