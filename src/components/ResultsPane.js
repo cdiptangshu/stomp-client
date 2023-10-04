@@ -16,15 +16,21 @@ export default function ResultsPane() {
 
     return (
         <div className="card">
-            <Card title="Results">
-                <CodeMirror
-                    id="results"
-                    name="results"
-                    value={code}
-                    extensions={[json()]}
-                    editable={false}
-                    className="border-1 surface-border"
-                />
+            <Card title="Results">                
+                <div className="flex flex-column gap-1">
+                    <div className="flex justify-content-between flex-wrap">
+                        <small className="font-semibold">/app/hello</small>
+                        <small className="text-color-secondary">{(new Date().toLocaleString())}</small>
+                    </div>
+                    <CodeMirror
+                        id="results"
+                        name="results"
+                        value={code}
+                        extensions={[json()]}
+                        editable={false}
+                        className="border-1 surface-border"
+                    />
+                </div>
             </Card>
         </div>
     );
