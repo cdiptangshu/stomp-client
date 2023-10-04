@@ -31,13 +31,11 @@ export default function ConnectForm() {
                 <div className="flex flex-row justify-content-center gap-2">
                     <Button 
                         label="Connect"
-                        disabled={false}
                         className="flex-1"
                     />
                     <Button 
                         label="Disconnect"
                         severity="secondary"
-                        disabled={true}
                         className="flex-1"
                     />
                 </div>

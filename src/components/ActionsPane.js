@@ -5,7 +5,7 @@ import ConnectForm from "./ConnectForm";
 import SubscribeForm from "./SubscribeForm";
 import SendForm from "./SendForm";
 
-export default function Config() {
+export default function ActionsPane() {
     return (
         <div className="card">
             <Card title="Actions">

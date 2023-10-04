@@ -1,10 +1,11 @@
 import React from 'react';
-import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/themes/saga-green/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
-import Config from './components/Config';
-import OutputWindow from './components/OutputWindow';
+import 'react-json-pretty/themes/monikai.css';
+import ActionsPane from './components/ActionsPane';
+import ResultsPane from './components/ResultsPane';
 
 function App() {
   return (
@@ -15,10 +16,10 @@ function App() {
       </div>
       <div className="grid">
         <div className="col-12 md:col-5">
-          <Config />
+          <ActionsPane />
         </div>
         <div className="col-12 md:col-7">
-          <OutputWindow />
+          <ResultsPane />
         </div>
       </div>
     </div>

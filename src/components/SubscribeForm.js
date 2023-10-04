@@ -29,7 +29,7 @@ export default function SubscribeForm() {
                     />
                     <Button
                         icon="pi pi-trash"
-                        severity="secondary"
+                        severity="danger"
                         className="w-1"
                     />
                 </div>                
