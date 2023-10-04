@@ -3,6 +3,7 @@ import React from "react";
 import CodeMirror from '@uiw/react-codemirror';
 import { json } from '@codemirror/lang-json';
 import { DataScroller } from 'primereact/datascroller';
+import './ResultsPane.css';
 
 export default function ResultsPane() {
 
@@ -39,13 +40,15 @@ export default function ResultsPane() {
 
     return (
         <div className="card">
-            <Card title="Results">
+            <Card>
                 <DataScroller 
                     value={results} 
                     itemTemplate={itemTemplate} 
                     rows={5} 
                     inline 
                     scrollHeight="600px"
+                    header="Received Messages"
+                    className="border-1 surface-border"
                 />
             </Card>
         </div>

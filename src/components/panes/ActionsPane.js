@@ -1,14 +1,14 @@
 
 import React from "react";
 import { Card } from 'primereact/card';
-import ConnectForm from "./ConnectForm";
-import SubscribeForm from "./SubscribeForm";
-import SendForm from "./SendForm";
+import ConnectForm from "../forms/ConnectForm";
+import SubscribeForm from "../forms/SubscribeForm";
+import SendForm from "../forms/SendForm";
 
 export default function ActionsPane() {
     return (
         <div className="card">
-            <Card title="Actions">
+            <Card>
                 <div className="flex flex-column gap-3">
                     <ConnectForm />
                     <SubscribeForm />

@@ -3,8 +3,8 @@ import 'primereact/resources/themes/saga-green/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
-import ActionsPane from './components/ActionsPane';
-import ResultsPane from './components/ResultsPane';
+import ActionsPane from './components/panes/ActionsPane';
+import ResultsPane from './components/panes/ResultsPane';
 import Banner from './components/Banner';
 
 function App() {
