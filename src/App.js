@@ -5,14 +5,12 @@ import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import ActionsPane from './components/ActionsPane';
 import ResultsPane from './components/ResultsPane';
+import Banner from './components/Banner';
 
 function App() {
   return (
     <div className="container">
-      <div className="text-right my-2">
-        <span className="text-lg font-bold p-2">STOMP UI</span>
-        <span className="text-sm text-primary">v0.1</span>
-      </div>
+      <Banner />
       <div className="grid">
         <div className="col-12 md:col-5">
           <ActionsPane />
