@@ -3,7 +3,6 @@ import 'primereact/resources/themes/saga-green/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
-import 'react-json-pretty/themes/monikai.css';
 import ActionsPane from './components/ActionsPane';
 import ResultsPane from './components/ResultsPane';
 

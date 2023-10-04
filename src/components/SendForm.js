@@ -1,8 +1,9 @@
 import React from "react";
 import { Panel } from 'primereact/panel';
 import { InputText } from 'primereact/inputtext';
-import { InputTextarea } from 'primereact/inputtextarea';
 import { Button } from 'primereact/button';
+import CodeMirror from '@uiw/react-codemirror';
+import { json } from '@codemirror/lang-json';
 
 export default function SendForm() {
     return (
@@ -16,17 +17,15 @@ export default function SendForm() {
                         placeholder="/app/hello"
                         onFocus={(e) => e.target.select()}
                     />
-                    <small className="p-error">error</small>
                 </div>
                 <div className="flex flex-column gap-2">
                     <label htmlFor="message">Message</label>
-                    <InputTextarea
+                    <CodeMirror
                         id="message"
                         name="message"
-                        autoResize="false"
-                        className="w-full"
+                        extensions={[json()]}
+                        className="border-1 surface-border"
                     />
-                    <small className="p-error">error</small>
                 </div>
                 <Button label="Send" icon="pi pi-send" />
             </div>

@@ -1,10 +1,11 @@
 import React, { } from 'react';
 import { InputText } from 'primereact/inputtext';
-import { InputTextarea } from 'primereact/inputtextarea';
 import { Button } from 'primereact/button';
 import { Panel } from 'primereact/panel';
+import CodeMirror from '@uiw/react-codemirror';
+import { json } from '@codemirror/lang-json';
 
-export default function ConnectForm() {
+export default function ConnectForm() {    
     return (
         <Panel header="Connect" toggleable>
             <div className="flex flex-column gap-2">
@@ -16,17 +17,15 @@ export default function ConnectForm() {
                         placeholder="ws://localhost:8080/websocket"
                         onFocus={(e) => e.target.select()}
                     />
-                    <small className="p-error">error</small>
                 </div>
                 <div className="flex flex-column gap-2">
                     <label htmlFor="headers">Headers</label>
-                    <InputTextarea
+                    <CodeMirror
                         id="headers"
                         name="headers"
-                        autoResize="false"
-                        className="w-full"
+                        extensions={[json()]}
+                        className="border-1 surface-border"
                     />
-                    <small className="p-error">error</small>
                 </div>
                 <div className="flex flex-row justify-content-center gap-2">
                     <Button 
