@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "STOMP UI",
+  "name": "A Client for Testing STOMP Protocol Based Web Sockets",
   "icons": [
     {
       "src": "favicon.ico",

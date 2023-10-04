@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="container">
       <div className="text-right my-2">
-        <span className="text-lg font-bold p-2">STOMP-UI</span>
+        <span className="text-lg font-bold p-2">STOMP UI</span>
         <span className="text-sm text-primary">v0.1</span>
       </div>
       <div className="grid">
