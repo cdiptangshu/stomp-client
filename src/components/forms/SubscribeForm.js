@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Panel } from 'primereact/panel';
-import { InputText } from 'primereact/inputtext';
+
 import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
+import { Panel } from 'primereact/panel';
 import { ToggleButton } from 'primereact/togglebutton';
 
 export default function SubscribeForm() {

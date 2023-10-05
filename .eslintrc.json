@@ -7,6 +7,7 @@
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
+        "plugin:import/recommended",
         "plugin:prettier/recommended"
     ],
     "parserOptions": {
@@ -17,6 +18,31 @@
         "react"
     ],
     "rules": {
+        "import/order": [
+            "error",
+            {
+                "groups": [
+                    "builtin",
+                    "external",
+                    "internal"
+                ],
+                "pathGroups": [
+                    {
+                        "pattern": "react",
+                        "group": "external",
+                        "position": "before"
+                    }
+                ],
+                "pathGroupsExcludedImportTypes": [
+                    "react"
+                ],
+                "newlines-between": "always",
+                "alphabetize": {
+                    "order": "asc",
+                    "caseInsensitive": true
+                }
+            }
+        ]
     },
     "settings": {
         "react": {

@@ -1,10 +1,11 @@
 import React from 'react';
-import { InputText } from 'primereact/inputtext';
-import { Button } from 'primereact/button';
-import { Panel } from 'primereact/panel';
-import CodeMirror from '@uiw/react-codemirror';
+
 import { json } from '@codemirror/lang-json';
+import CodeMirror from '@uiw/react-codemirror';
 import { Badge } from 'primereact/badge';
+import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
+import { Panel } from 'primereact/panel';
 
 export default function ConnectForm() {
   const getHeader = () => {

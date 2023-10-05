@@ -1,7 +1,9 @@
 import React from 'react';
+
+import { Card } from 'primereact/card';
+
 import ControlsPane from './panes/ControlsPane';
 import MessagesPane from './panes/MessagesPane';
-import { Card } from 'primereact/card';
 
 export default function Dashboard() {
   return (

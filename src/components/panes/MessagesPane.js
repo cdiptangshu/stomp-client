@@ -1,10 +1,11 @@
 import React from 'react';
-import CodeMirror from '@uiw/react-codemirror';
+
 import { json } from '@codemirror/lang-json';
+import CodeMirror from '@uiw/react-codemirror';
+import { Badge } from 'primereact/badge';
+import { Button } from 'primereact/button';
 import { DataScroller } from 'primereact/datascroller';
 import './MessagesPane.css';
-import { Button } from 'primereact/button';
-import { Badge } from 'primereact/badge';
 
 export default function MessagesPane() {
   const results = [...Array(10).keys()];
