@@ -11,28 +11,28 @@ export default function SubscribeForm() {
     return (
         <Panel header="Subscribe" toggleable>
             <div className="flex flex-column gap-2">
-                <div className="flex flex-row justify-content-center gap-2">
+                <div className="flex flex-row justify-content-center gap-1">
                     <InputText
-                        id="topic"
-                        name="topic"
+                        id="subscribe-topic"
+                        name="subscribe-topic"
                         placeholder="/topic/greetings"
                         className="w-full"
                     />
-                    <ToggleButton
-                        onLabel=""
-                        offLabel=""
-                        onIcon="pi pi-bell"
-                        offIcon="pi pi-bell"
-                        checked={checked}
-                        onChange={(e) => { setChecked(e.value) }}
-                        className="w-1"
-                    />
-                    <Button
-                        icon="pi pi-trash"
-                        severity="danger"
-                        className="w-1"
-                    />
-                </div>                
+                    <div className="p-buttonset flex">
+                        <ToggleButton
+                            onLabel=""
+                            offLabel=""
+                            onIcon="pi pi-bell"
+                            offIcon="pi pi-bell"
+                            checked={checked}
+                            onChange={(e) => { setChecked(e.value) }}
+                        />
+                        <Button
+                            icon="pi pi-trash"
+                            severity="secondary"
+                        />
+                    </div>
+                </div>
             </div>
         </Panel>
     )

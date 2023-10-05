@@ -11,11 +11,11 @@ function App() {
   return (
     <div className="container">
       <Banner />
-      <div className="grid">
-        <div className="col-12 md:col-5">
+      <div className="md:flex gap-3">        
+        <div className="mb-3 md:w-4">
           <ActionsPane />
         </div>
-        <div className="col-12 md:col-7">
+        <div className="mb-3 md:flex-1">
           <ResultsPane />
         </div>
       </div>

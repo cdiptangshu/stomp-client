@@ -10,10 +10,10 @@ export default function SendForm() {
         <Panel header="Send" toggleable>
             <div className="flex flex-column gap-2">
                 <div className="flex flex-column gap-2">
-                    <label htmlFor="topic">Topic</label>
+                    <label htmlFor="send-topic">send-topic</label>
                     <InputText
-                        id="topic"
-                        name="topic"
+                        id="send-topic"
+                        name="send-topic"
                         placeholder="/app/hello"
                         onFocus={(e) => e.target.select()}
                     />

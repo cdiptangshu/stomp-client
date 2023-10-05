@@ -50,7 +50,6 @@ export default function ResultsPane() {
                     inline
                     header="Messages"
                     emptyMessage="No messages received."
-                    scrollHeight="80vh"
                     className="border-1 surface-border"
                 />
             </Card>
