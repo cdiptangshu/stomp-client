@@ -6,8 +6,17 @@ import CodeMirror from '@uiw/react-codemirror';
 import { json } from '@codemirror/lang-json';
 
 export default function SendForm() {
+    const getHeader = () => {
+        return (
+            <span>
+                <i className="pi pi-send"></i>
+                &nbsp;Send
+            </span>
+        );
+    };
+
     return (
-        <Panel header="Send" toggleable>
+        <Panel header={getHeader()} toggleable>
             <div className="flex flex-column gap-2">
                 <div className="flex flex-column gap-2">
                     <label htmlFor="send-topic">Topic</label>

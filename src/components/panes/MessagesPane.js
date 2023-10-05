@@ -24,10 +24,10 @@ export default function MessagesPane() {
     const getHeader = () => {
         return (
             <div className="flex justify-content-between flex-wrap align-items-center">
-                <div>
-                    <span className="pr-1">Messages</span>
-                    <Badge value={results.length} />
-                </div>                
+                <span>
+                <i className="pi pi-envelope"></i>
+                &nbsp;Messages
+            </span>
                 <div>
                     <Button
                         icon="pi pi-trash"

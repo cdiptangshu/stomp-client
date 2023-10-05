@@ -5,9 +5,18 @@ import { Panel } from 'primereact/panel';
 import CodeMirror from '@uiw/react-codemirror';
 import { json } from '@codemirror/lang-json';
 
-export default function ConnectForm() {        
+export default function ConnectForm() {
+    const getHeader = () => {
+        return (
+            <span>
+                <i className="pi pi-link"></i>
+                &nbsp;Connect
+            </span>
+        );
+    };
+
     return (
-        <Panel header="Connect" toggleable>
+        <Panel header={getHeader()} toggleable>
             <div className="flex flex-column gap-2">
                 <div className="flex flex-column gap-2">
                     <label htmlFor="endpoint">Endpoint</label>
@@ -29,11 +38,11 @@ export default function ConnectForm() {
                     <small className="p-error">Errors</small>
                 </div>
                 <div className="flex flex-row justify-content-center gap-2">
-                    <Button 
+                    <Button
                         label="Connect"
                         className="flex-1"
                     />
-                    <Button 
+                    <Button
                         label="Disconnect"
                         severity="secondary"
                         className="flex-1"

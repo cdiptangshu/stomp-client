@@ -8,8 +8,17 @@ import { ToggleButton } from 'primereact/togglebutton';
 export default function SubscribeForm() {
     const [checked, setChecked] = useState(false);
 
+    const getHeader = () => {
+        return (
+            <span>
+                <i className="pi pi-bell"></i>
+                &nbsp;Subscribe
+            </span>
+        );
+    };
+
     return (
-        <Panel header="Subscribe" toggleable>
+        <Panel header={getHeader()} toggleable>
             <div className="flex flex-column gap-2">
                 <div className="flex flex-row justify-content-center gap-1">
                     <InputText
