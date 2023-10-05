@@ -1,5 +1,5 @@
 {
-  "short_name": "STOMP UI",
+  "short_name": "STOMP Client",
   "name": "A Client for Testing STOMP Protocol Based Web Sockets",
   "icons": [
     {

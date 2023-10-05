@@ -1,6 +1,6 @@
 version: '3.9'
 services:
-  stomp-ui:
+  stomp-client:
     build: .
     ports:
       - "9000:80"

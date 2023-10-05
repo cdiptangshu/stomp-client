@@ -1,5 +1,5 @@
 {
-  "name": "stomp-ui",
+  "name": "stomp-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
