@@ -1,4 +1,3 @@
-import { Card } from "primereact/card";
 import React from "react";
 import CodeMirror from '@uiw/react-codemirror';
 import { json } from '@codemirror/lang-json';
@@ -26,7 +25,7 @@ export default function MessagesPane() {
             <div className="flex justify-content-between flex-wrap align-items-center">
                 <span>
                     <i className="pi pi-envelope"></i>&nbsp;Messages&nbsp;
-                    <Badge value={results.length}/>
+                    <Badge value={results.length} />
                 </span>
                 <Button
                     icon="pi pi-trash"
@@ -68,20 +67,22 @@ export default function MessagesPane() {
         );
     };
 
+    const getEmptyMessage = () => {
+        return (
+            <div className="text-color-secondary p-2">No messages received.</div>
+        );
+    };
+
     return (
-        <div className="card">
-            <Card>
-                <DataScroller
-                    value={results}
-                    itemTemplate={itemTemplate}
-                    rows={5}
-                    inline
-                    header={getHeader()}
-                    emptyMessage="No messages received."
-                    className="border-1 surface-border"
-                    scrollHeight="80vh"
-                />
-            </Card>
-        </div>
+        <DataScroller
+            value={results}
+            itemTemplate={itemTemplate}
+            rows={5}
+            inline
+            header={getHeader()}
+            emptyMessage={getEmptyMessage()}
+            className="border-1 surface-border"
+            scrollHeight="80vh"
+        />
     );
 }
