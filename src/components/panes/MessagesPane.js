@@ -5,6 +5,7 @@ import { json } from '@codemirror/lang-json';
 import { DataScroller } from 'primereact/datascroller';
 import './MessagesPane.css';
 import { Button } from "primereact/button";
+import { Badge } from 'primereact/badge';
 
 export default function MessagesPane() {
 
@@ -24,18 +25,17 @@ export default function MessagesPane() {
         return (
             <div className="flex justify-content-between flex-wrap align-items-center">
                 <span>
-                <i className="pi pi-envelope"></i>
-                &nbsp;Messages
-            </span>
-                <div>
-                    <Button
-                        icon="pi pi-trash"
-                        severity="secondary"
-                        outlined
-                        size="small"
-                        aria-label="clear"
-                    />
-                </div>
+                    <i className="pi pi-envelope"></i>&nbsp;Messages&nbsp;
+                    <Badge value={results.length}/>
+                </span>
+                <Button
+                    icon="pi pi-trash"
+                    severity="secondary"
+                    outlined
+                    size="small"
+                    title="Clear"
+                    aria-label="clear"
+                />
             </div>
         );
     };
@@ -43,11 +43,19 @@ export default function MessagesPane() {
     const itemTemplate = () => {
         return (
             <div className="flex flex-column gap-1 p-2 m-1">
-                <div className="flex justify-content-between flex-wrap">
+                <div className="flex justify-content-between flex-wrap align-items-center">
                     <div className="text-sm text-color-secondary">
-                        <span className="message-time pr-2">{(new Date().toLocaleString())}</span>
                         <span className="message-topic">/app/hello</span>
+                        <span className="message-time">{(new Date().toISOString())}</span>
                     </div>
+                    <Button
+                        icon="pi pi-copy"
+                        severity="secondary"
+                        text
+                        size="small"
+                        title="Copy"
+                        aria-label="copy"
+                    />
                 </div>
                 <CodeMirror
                     name="results"

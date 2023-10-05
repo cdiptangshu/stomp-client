@@ -10,10 +10,7 @@ export default function SubscribeForm() {
 
     const getHeader = () => {
         return (
-            <span>
-                <i className="pi pi-bell"></i>
-                &nbsp;Subscribe
-            </span>
+            <span><i className="pi pi-bell"></i>&nbsp;Subscribe</span>
         );
     };
 
@@ -35,11 +32,13 @@ export default function SubscribeForm() {
                             offIcon="pi pi-bell"                            
                             checked={checked}
                             onChange={(e) => { setChecked(e.value) }}
+                            title="Subscribe"
                         />
                         <Button
                             icon="pi pi-trash"
                             severity="secondary"
                             outlined
+                            title="Remove"
                         />
                     </span>
                 </div>

@@ -4,14 +4,12 @@ import { Button } from 'primereact/button';
 import { Panel } from 'primereact/panel';
 import CodeMirror from '@uiw/react-codemirror';
 import { json } from '@codemirror/lang-json';
+import { Badge } from 'primereact/badge';
 
 export default function ConnectForm() {
     const getHeader = () => {
         return (
-            <span>
-                <i className="pi pi-link"></i>
-                &nbsp;Connect
-            </span>
+            <span><i className="pi pi-link p-overlay-badge"><Badge severity="success" /></i>&nbsp;Connect</span>
         );
     };
 

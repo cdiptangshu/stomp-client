@@ -8,10 +8,7 @@ import { json } from '@codemirror/lang-json';
 export default function SendForm() {
     const getHeader = () => {
         return (
-            <span>
-                <i className="pi pi-send"></i>
-                &nbsp;Send
-            </span>
+            <span><i className="pi pi-send"></i>&nbsp;Send</span>
         );
     };
 
