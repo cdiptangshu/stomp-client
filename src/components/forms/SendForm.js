@@ -10,7 +10,7 @@ export default function SendForm() {
         <Panel header="Send" toggleable>
             <div className="flex flex-column gap-2">
                 <div className="flex flex-column gap-2">
-                    <label htmlFor="send-topic">send-topic</label>
+                    <label htmlFor="send-topic">Topic</label>
                     <InputText
                         id="send-topic"
                         name="send-topic"
@@ -20,9 +20,8 @@ export default function SendForm() {
                     <small className="p-error">Errors</small>
                 </div>
                 <div className="flex flex-column gap-2">
-                    <label htmlFor="message">Message</label>
+                    <span>Message</span>
                     <CodeMirror
-                        id="message"
                         name="message"
                         extensions={[json()]}
                         className="border-1 surface-border"

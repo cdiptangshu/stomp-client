@@ -20,9 +20,8 @@ export default function ConnectForm() {
                     <small className="p-error">Errors</small>
                 </div>
                 <div className="flex flex-column gap-2">
-                    <label htmlFor="headers">Headers</label>
+                    <span>Headers</span>
                     <CodeMirror
-                        id="headers"
                         name="headers"
                         extensions={[json()]}
                         className="border-1 surface-border"

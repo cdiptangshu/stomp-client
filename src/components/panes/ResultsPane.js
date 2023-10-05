@@ -7,7 +7,7 @@ import './ResultsPane.css';
 
 export default function ResultsPane() {
 
-    const results = [...Array(5).keys()];
+    const results = [...Array(10).keys()];
 
     const data = {
         name: {
@@ -29,12 +29,11 @@ export default function ResultsPane() {
                     </div>                    
                 </div>
                 <CodeMirror
-                    id="results"
                     name="results"
                     value={code}
                     extensions={[json()]}
                     editable={false}
-                    className="border-1 surface-border"
+                    className="border-1 surface-border"                    
                 />
             </div>
         );
@@ -51,6 +50,7 @@ export default function ResultsPane() {
                     header="Messages"
                     emptyMessage="No messages received."
                     className="border-1 surface-border"
+                    scrollHeight="80vh"
                 />
             </Card>
         </div>

@@ -9,7 +9,7 @@ import Banner from './components/Banner';
 
 function App() {
   return (
-    <div className="container">
+    <div className="mx-2">
       <Banner />
       <div className="md:flex gap-3">        
         <div className="mb-3 md:w-4">
