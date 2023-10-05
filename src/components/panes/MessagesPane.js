@@ -47,14 +47,7 @@ export default function MessagesPane() {
             <span className="message-topic">/app/hello</span>
             <span className="message-time">{new Date().toISOString()}</span>
           </div>
-          <Button
-            icon="pi pi-copy"
-            severity="secondary"
-            text
-            size="small"
-            title="Copy"
-            aria-label="copy"
-          />
+          <Button icon="pi pi-copy" severity="secondary" text title="Copy" aria-label="copy" />
         </div>
         <CodeMirror
           name="results"
