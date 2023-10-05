@@ -28,7 +28,7 @@ export default function SendForm() {
                     />
                     <small className="p-error">Errors</small>
                 </div>
-                <Button label="Send" icon="pi pi-send" />
+                <Button label="Send" />
             </div>
         </Panel>
     );
