@@ -23,8 +23,10 @@ export default function ResultsPane() {
         return (
             <div className="flex flex-column gap-1 p-2 m-1">
                 <div className="flex justify-content-between flex-wrap">
-                    <small className="font-semibold">/app/hello</small>
-                    <small className="text-color-secondary">{(new Date().toLocaleString())}</small>
+                    <div className="text-sm text-color-secondary">                        
+                        <span className="message-time pr-2">{(new Date().toLocaleString())}</span>
+                        <span className="message-topic">/app/hello</span>
+                    </div>                    
                 </div>
                 <CodeMirror
                     id="results"
@@ -41,13 +43,14 @@ export default function ResultsPane() {
     return (
         <div className="card">
             <Card>
-                <DataScroller 
-                    value={results} 
-                    itemTemplate={itemTemplate} 
-                    rows={5} 
-                    inline 
+                <DataScroller
+                    value={results}
+                    itemTemplate={itemTemplate}
+                    rows={5}
+                    inline
+                    header="Messages"
+                    emptyMessage="No messages received."
                     scrollHeight="600px"
-                    header="Received Messages"
                     className="border-1 surface-border"
                 />
             </Card>

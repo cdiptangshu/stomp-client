@@ -1,3 +1,13 @@
 .p-datascroller.p-datascroller-inline .p-datascroller-list > li {
     border: 0;
 }
+
+.message-time::before{
+    content: '[';
+}
+.message-time::after{
+    content: ']';
+}
+.message-topic::after{
+    content: ':';
+}

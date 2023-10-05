@@ -5,7 +5,7 @@ import { Panel } from 'primereact/panel';
 import CodeMirror from '@uiw/react-codemirror';
 import { json } from '@codemirror/lang-json';
 
-export default function ConnectForm() {    
+export default function ConnectForm() {        
     return (
         <Panel header="Connect" toggleable>
             <div className="flex flex-column gap-2">
