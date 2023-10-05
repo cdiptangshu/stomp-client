@@ -5,7 +5,6 @@ import { json } from '@codemirror/lang-json';
 import { DataScroller } from 'primereact/datascroller';
 import './MessagesPane.css';
 import { Button } from "primereact/button";
-import { Badge } from 'primereact/badge';
 
 export default function MessagesPane() {
 
