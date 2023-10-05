@@ -7,7 +7,7 @@ import './ResultsPane.css';
 
 export default function ResultsPane() {
 
-    const results = [...Array(10).keys()];
+    const results = [...Array(5).keys()];
 
     const data = {
         name: {
@@ -50,7 +50,7 @@ export default function ResultsPane() {
                     inline
                     header="Messages"
                     emptyMessage="No messages received."
-                    scrollHeight="600px"
+                    scrollHeight="80vh"
                     className="border-1 surface-border"
                 />
             </Card>

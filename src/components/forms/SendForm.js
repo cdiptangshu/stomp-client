@@ -17,6 +17,7 @@ export default function SendForm() {
                         placeholder="/app/hello"
                         onFocus={(e) => e.target.select()}
                     />
+                    <small className="p-error">Errors</small>
                 </div>
                 <div className="flex flex-column gap-2">
                     <label htmlFor="message">Message</label>
@@ -26,6 +27,7 @@ export default function SendForm() {
                         extensions={[json()]}
                         className="border-1 surface-border"
                     />
+                    <small className="p-error">Errors</small>
                 </div>
                 <Button label="Send" icon="pi pi-send" />
             </div>
