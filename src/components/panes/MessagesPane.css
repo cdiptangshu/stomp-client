@@ -2,6 +2,7 @@
     border: 0;
 }
 
+
 .message-time::before{
     content: '[';
 }
@@ -11,3 +12,4 @@
 .message-topic::after{
     content: ':';
 }
+

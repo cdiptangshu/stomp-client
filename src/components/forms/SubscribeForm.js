@@ -18,20 +18,21 @@ export default function SubscribeForm() {
                         placeholder="/topic/greetings"
                         className="w-full"
                     />
-                    <div className="p-buttonset flex">
+                    <span className="p-buttonset flex">
                         <ToggleButton
                             onLabel=""
                             offLabel=""
                             onIcon="pi pi-bell"
-                            offIcon="pi pi-bell"
+                            offIcon="pi pi-bell"                            
                             checked={checked}
                             onChange={(e) => { setChecked(e.value) }}
                         />
                         <Button
                             icon="pi pi-trash"
                             severity="secondary"
+                            outlined
                         />
-                    </div>
+                    </span>
                 </div>
             </div>
         </Panel>

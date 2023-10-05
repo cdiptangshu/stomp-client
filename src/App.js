@@ -4,7 +4,7 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import ActionsPane from './components/panes/ActionsPane';
-import ResultsPane from './components/panes/ResultsPane';
+import MessagesPane from './components/panes/MessagesPane';
 import Banner from './components/Banner';
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
           <ActionsPane />
         </div>
         <div className="mb-3 md:flex-1">
-          <ResultsPane />
+          <MessagesPane />
         </div>
       </div>
     </div>

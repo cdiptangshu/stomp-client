@@ -3,9 +3,11 @@ import React from "react";
 import CodeMirror from '@uiw/react-codemirror';
 import { json } from '@codemirror/lang-json';
 import { DataScroller } from 'primereact/datascroller';
-import './ResultsPane.css';
+import './MessagesPane.css';
+import { Button } from "primereact/button";
+import { Badge } from 'primereact/badge';
 
-export default function ResultsPane() {
+export default function MessagesPane() {
 
     const results = [...Array(10).keys()];
 
@@ -19,21 +21,41 @@ export default function ResultsPane() {
     };
     const code = JSON.stringify(data, null, 2);
 
+    const getHeader = () => {
+        return (
+            <div className="flex justify-content-between flex-wrap align-items-center">
+                <div>
+                    <span className="pr-1">Messages</span>
+                    <Badge value={results.length} />
+                </div>                
+                <div>
+                    <Button
+                        icon="pi pi-trash"
+                        severity="secondary"
+                        outlined
+                        size="small"
+                        aria-label="clear"
+                    />
+                </div>
+            </div>
+        );
+    };
+
     const itemTemplate = () => {
         return (
             <div className="flex flex-column gap-1 p-2 m-1">
                 <div className="flex justify-content-between flex-wrap">
-                    <div className="text-sm text-color-secondary">                        
+                    <div className="text-sm text-color-secondary">
                         <span className="message-time pr-2">{(new Date().toLocaleString())}</span>
                         <span className="message-topic">/app/hello</span>
-                    </div>                    
+                    </div>
                 </div>
                 <CodeMirror
                     name="results"
                     value={code}
                     extensions={[json()]}
                     editable={false}
-                    className="border-1 surface-border"                    
+                    className="border-1 surface-border"
                 />
             </div>
         );
@@ -47,7 +69,7 @@ export default function ResultsPane() {
                     itemTemplate={itemTemplate}
                     rows={5}
                     inline
-                    header="Messages"
+                    header={getHeader()}
                     emptyMessage="No messages received."
                     className="border-1 surface-border"
                     scrollHeight="80vh"
