@@ -13,8 +13,8 @@ import CodeEditor from './CodeEditor';
 export default function ConnectForm() {
   const [connected, setConnected] = useState(false);
 
-  const connect = (data) => {
-    console.log('Connecting...', data);
+  const connect = (endpoint, headers) => {
+    console.log('Connecting to', endpoint, 'with headers', headers);
     setConnected(true);
   };
 
@@ -36,6 +36,7 @@ export default function ConnectForm() {
         require_protocol: true,
         require_tld: false
       };
+
       if (validator.isEmpty(data.endpoint)) {
         errors.endpoint = 'Endpoint is required.';
       } else if (!validator.isURL(data.endpoint, options)) {
@@ -49,7 +50,7 @@ export default function ConnectForm() {
       return errors;
     },
     onSubmit: (data) => {
-      connect(data);
+      connect(data.endpoint, data.headers ? JSON.parse(data.headers) : {});
     }
   });
 
