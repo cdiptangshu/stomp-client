@@ -8,6 +8,7 @@ import { classNames } from 'primereact/utils';
 import validator from 'validator';
 
 import CodeEditor from './CodeEditor';
+import { REGEX_TOPIC } from '../common';
 
 export default function SendForm() {
   const form = useFormik({
@@ -20,7 +21,7 @@ export default function SendForm() {
 
       if (validator.isEmpty(data.topic)) {
         errors.topic = 'Topic is required.';
-      } else if (!validator.matches(data.topic, /^\S+$/)) {
+      } else if (!validator.matches(data.topic, REGEX_TOPIC)) {
         errors.topic = 'Topic is not valid.';
       }
 
