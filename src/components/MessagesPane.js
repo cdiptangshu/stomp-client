@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { json } from '@codemirror/lang-json';
-import CodeMirror from '@uiw/react-codemirror';
 import { Badge } from 'primereact/badge';
 import { Button } from 'primereact/button';
 import { DataScroller } from 'primereact/datascroller';
+
 import './MessagesPane.css';
+import CodeEditor from './CodeEditor';
 
 export default function MessagesPane() {
   const results = [...Array(10).keys()];
@@ -49,13 +49,7 @@ export default function MessagesPane() {
           </div>
           <Button icon="pi pi-copy" severity="secondary" text title="Copy" aria-label="copy" />
         </div>
-        <CodeMirror
-          name="results"
-          value={code}
-          extensions={[json()]}
-          editable={false}
-          className="border-1 surface-border"
-        />
+        <CodeEditor value={code} editable={false} />
       </div>
     );
   };
