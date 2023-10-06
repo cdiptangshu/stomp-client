@@ -30,7 +30,7 @@ export default function SendForm() {
         </div>
         <div className="flex flex-column gap-2">
           <span>Message</span>
-          <CodeEditor name="message" />
+          <CodeEditor />
           <small className="p-error">Errors</small>
         </div>
         <Button label="Send" />

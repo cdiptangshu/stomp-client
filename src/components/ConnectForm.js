@@ -97,7 +97,6 @@ export default function ConnectForm() {
         <div className="flex flex-column gap-2">
           <span>Headers</span>
           <CodeEditor
-            name="headers"
             value={form.values.headers}
             onChange={onChangeHeaders}
             showError={isFormFieldInvalid('headers')}

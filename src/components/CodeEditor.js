@@ -6,10 +6,9 @@ import CodeMirror from '@uiw/react-codemirror';
 import { classNames } from 'primereact/utils';
 import PropTypes from 'prop-types';
 
-function CodeEditor({ name, value, onChange, showError }) {
+function CodeEditor({ value, onChange, showError }) {
   return (
     <CodeMirror
-      name={name}
       extensions={[json()]}
       value={value}
       onChange={onChange}
@@ -23,7 +22,6 @@ function CodeEditor({ name, value, onChange, showError }) {
 }
 
 CodeEditor.propTypes = {
-  name: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
   showError: PropTypes.bool
