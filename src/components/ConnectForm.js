@@ -37,10 +37,10 @@ export default function ConnectForm() {
           <CodeMirror name="headers" extensions={[json()]} className="border-1 surface-border" />
           <small className="p-error">Errors</small>
         </div>
-        <div className="flex flex-row justify-content-center gap-2">
+        <span className="p-buttonset flex">
           <Button label="Connect" className="flex-1" />
           <Button label="Disconnect" severity="secondary" className="flex-1" />
-        </div>
+        </span>
       </div>
     </Panel>
   );
