@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import { json } from '@codemirror/lang-json';
 import CodeMirror from '@uiw/react-codemirror';
@@ -15,15 +15,15 @@ export default function ConnectForm() {
   const [connected, setConnected] = useState(false);
 
   const connect = (data) => {
-    console.log('Connecting...',data);
+    console.log('Connecting...', data);
     setConnected(true);
-  }
+  };
 
   const disconnect = () => {
     console.log('Disconnecting...');
     setConnected(false);
-  }
-  
+  };
+
   const form = useFormik({
     initialValues: {
       endpoint: '',
@@ -111,7 +111,13 @@ export default function ConnectForm() {
           {getErrorMessage('headers')}
         </div>
         <span className="p-buttonset flex">
-          <Button type="submit" label="Connect" className="flex-1" disabled={connected} onClick={form.handleSubmit} />
+          <Button
+            type="submit"
+            label="Connect"
+            className="flex-1"
+            disabled={connected}
+            onClick={form.handleSubmit}
+          />
           <Button
             label="Disconnect"
             severity="secondary"
@@ -123,5 +129,4 @@ export default function ConnectForm() {
       </div>
     </Panel>
   );
-
 }
