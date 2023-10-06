@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import { json } from '@codemirror/lang-json';
-import CodeMirror from '@uiw/react-codemirror';
 import { useFormik } from 'formik';
 import { Badge } from 'primereact/badge';
 import { Button } from 'primereact/button';
@@ -9,7 +7,8 @@ import { InputText } from 'primereact/inputtext';
 import { Panel } from 'primereact/panel';
 import { classNames } from 'primereact/utils';
 import validator from 'validator';
-import './ConnectForm.css';
+
+import CodeEditor from './CodeEditor';
 
 export default function ConnectForm() {
   const [connected, setConnected] = useState(false);
@@ -97,16 +96,12 @@ export default function ConnectForm() {
         </div>
         <div className="flex flex-column gap-2">
           <span>Headers</span>
-          <CodeMirror
+
+          <CodeEditor
             name="headers"
-            extensions={[json()]}
             value={form.values.headers}
             onChange={onChangeHeaders}
-            className={classNames({
-              'border-1': true,
-              'p-invalid': isFormFieldInvalid('headers'),
-              'surface-border': !isFormFieldInvalid('headers')
-            })}
+            showError={isFormFieldInvalid('headers')}
           />
           {getErrorMessage('headers')}
         </div>
