@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { Button } from 'primereact/button';
-import { InputText } from 'primereact/inputtext';
 import { Panel } from 'primereact/panel';
-import { ToggleButton } from 'primereact/togglebutton';
+
+import ChannelForm from './ChannelForm';
 
 export default function SubscribeForm() {
-  const [checked, setChecked] = useState(false);
-
   const getHeader = () => {
     return (
       <span>
@@ -20,26 +17,7 @@ export default function SubscribeForm() {
     <Panel header={getHeader()} toggleable>
       <div className="flex flex-column gap-2">
         <div className="flex flex-row justify-content-center gap-1">
-          <InputText
-            id="subscribe-topic"
-            name="subscribe-topic"
-            placeholder="/topic/greetings"
-            className="w-full"
-          />
-          <span className="p-buttonset flex">
-            <ToggleButton
-              onLabel=""
-              offLabel=""
-              onIcon="pi pi-bell"
-              offIcon="pi pi-bell"
-              checked={checked}
-              onChange={(e) => {
-                setChecked(e.value);
-              }}
-              title="Subscribe"
-            />
-            <Button icon="pi pi-trash" severity="secondary" outlined title="Remove" />
-          </span>
+          <ChannelForm />
         </div>
       </div>
     </Panel>
