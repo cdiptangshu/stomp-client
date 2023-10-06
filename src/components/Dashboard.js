@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Card } from 'primereact/card';
 
-import ControlsPane from './panes/ControlsPane';
-import MessagesPane from './panes/MessagesPane';
+import ControlsPane from './ControlsPane';
+import MessagesPane from './MessagesPane';
 
 export default function Dashboard() {
   return (

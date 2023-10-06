@@ -1,8 +1,8 @@
 import React from 'react';
 
-import ConnectForm from '../forms/ConnectForm';
-import SendForm from '../forms/SendForm';
-import SubscribeForm from '../forms/SubscribeForm';
+import ConnectForm from './ConnectForm';
+import SendForm from './SendForm';
+import SubscribeForm from './SubscribeForm';
 
 export default function ControlsPane() {
   return (
