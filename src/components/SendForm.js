@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { json } from '@codemirror/lang-json';
-import CodeMirror from '@uiw/react-codemirror';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { Panel } from 'primereact/panel';
+
+import CodeEditor from './CodeEditor';
 
 export default function SendForm() {
   const getHeader = () => {
@@ -30,7 +30,7 @@ export default function SendForm() {
         </div>
         <div className="flex flex-column gap-2">
           <span>Message</span>
-          <CodeMirror name="message" extensions={[json()]} className="border-1 surface-border" />
+          <CodeEditor name="message" />
           <small className="p-error">Errors</small>
         </div>
         <Button label="Send" />
