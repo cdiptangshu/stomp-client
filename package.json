@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@uiw/react-codemirror": "^4.21.19",
     "formik": "^2.4.5",
+    "nanoid": "^5.0.1",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
     "primereact": "^10.0.2",

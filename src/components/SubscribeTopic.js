@@ -8,27 +8,32 @@ import validator from 'validator';
 
 import { REGEX_TOPIC } from '../common';
 
-function SubscribeItem({ itemId, onDelete, allowDelete = true }) {
-  const [topic, setTopic] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
+function SubscribeTopic({
+  topic = { id: '0', path: '', enabled: false },
+  onDelete,
+  allowDelete = true
+}) {
+  const [path, setPath] = useState(topic.path);
+  const [subscribed, setSubscribed] = useState(topic.enabled);
 
-  const isValid = () => validator.matches(topic, REGEX_TOPIC);
+  const isValid = () => validator.matches(path, REGEX_TOPIC);
 
-  const name = `subscribe-topic-${itemId}`;
+  const name = `path-${topic.id}`;
 
-  const onChangeSubscribe = (e) => {
+  const handleSubscribe = (e) => {
     if (!isValid()) return;
 
     setSubscribed(e.target.value);
+
+    console.log('subscribed', e.target.value, 'to topic', topic.path);
   };
 
   return (
     <div className="flex flex-row justify-content-center gap-1">
       <InputText
-        id={name}
         name={name}
-        value={topic}
-        onChange={(e) => setTopic(e.target.value)}
+        value={path}
+        onChange={(e) => setPath(e.target.value)}
         readOnly={subscribed}
         placeholder="/topic/greetings"
         className="w-full"
@@ -43,14 +48,14 @@ function SubscribeItem({ itemId, onDelete, allowDelete = true }) {
           offIcon="pi pi-bell"
           checked={subscribed}
           disabled={!isValid()}
-          onChange={onChangeSubscribe}
+          onChange={handleSubscribe}
         />
         <Button
           icon="pi pi-trash"
           severity="secondary"
           outlined
           title="Remove"
-          onClick={() => onDelete(itemId)}
+          onClick={() => onDelete(topic.id)}
           disabled={!allowDelete}
         />
       </span>
@@ -58,10 +63,10 @@ function SubscribeItem({ itemId, onDelete, allowDelete = true }) {
   );
 }
 
-SubscribeItem.propTypes = {
-  itemId: PropTypes.number,
+SubscribeTopic.propTypes = {
+  topic: PropTypes.object,
   onDelete: PropTypes.func,
   allowDelete: PropTypes.bool
 };
 
-export default SubscribeItem;
+export default SubscribeTopic;
