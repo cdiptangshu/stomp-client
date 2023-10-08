@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { useFormik } from 'formik';
 import { Badge } from 'primereact/badge';
@@ -6,21 +6,24 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { Panel } from 'primereact/panel';
 import { classNames } from 'primereact/utils';
+import { useSelector, useDispatch } from 'react-redux';
 import validator from 'validator';
 
 import CodeEditor from './CodeEditor';
+import { connect, disconnect } from '../connectionSlice';
 
 export default function ConnectForm() {
-  const [connected, setConnected] = useState(false);
+  const connected = useSelector((state) => state.connection.connected);
+  const dispatch = useDispatch();
 
-  const connect = (endpoint, headers) => {
+  const handleConnect = (endpoint, headers) => {
     console.log('Connecting to', endpoint, 'with headers', headers);
-    setConnected(true);
+    dispatch(connect());
   };
 
-  const disconnect = () => {
+  const handleDisconnect = () => {
     console.log('Disconnecting...');
-    setConnected(false);
+    dispatch(disconnect());
   };
 
   const form = useFormik({
@@ -50,7 +53,7 @@ export default function ConnectForm() {
       return errors;
     },
     onSubmit: (data) => {
-      connect(data.endpoint, data.headers ? JSON.parse(data.headers) : {});
+      handleConnect(data.endpoint, data.headers ? JSON.parse(data.headers) : {});
     }
   });
 
@@ -117,7 +120,7 @@ export default function ConnectForm() {
             severity="secondary"
             className="flex-1"
             disabled={!connected}
-            onClick={disconnect}
+            onClick={handleDisconnect}
           />
         </span>
       </div>

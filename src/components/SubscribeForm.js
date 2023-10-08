@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 
 import { nanoid } from 'nanoid';
+import { BlockUI } from 'primereact/blockui';
 import { Panel } from 'primereact/panel';
+import { useSelector } from 'react-redux';
 
 import SubscribeTopic from './SubscribeTopic';
 
 export default function SubscribeForm() {
+  const connected = useSelector((state) => state.connection.connected);
+
   const [topics, setTopics] = useState([
     { id: nanoid(), path: '/topic/0', enabled: true },
     { id: nanoid(), path: '/topic/1', enabled: false },
@@ -35,7 +39,9 @@ export default function SubscribeForm() {
 
   return (
     <Panel header={getHeader()} toggleable>
-      <div className="flex flex-column gap-2">{subscribeItems}</div>
+      <BlockUI blocked={!connected}>
+        <div className="flex flex-column gap-2">{subscribeItems}</div>
+      </BlockUI>
     </Panel>
   );
 }
