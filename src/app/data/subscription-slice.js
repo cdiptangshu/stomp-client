@@ -19,10 +19,13 @@ export const subscriptionSlice = createSlice({
       const topic = action.payload;
       const index = state.topics.findIndex((t) => t.id === topic.id);
       state.topics[index] = topic;
+    },
+    unsubscribeAll: (state) => {
+      state.topics.forEach((t) => (t.enabled = false));
     }
   }
 });
 
-export const { add, remove, subscribe, unsubscribe } = subscriptionSlice.actions;
+export const { add, remove, subscribe, unsubscribeAll } = subscriptionSlice.actions;
 
 export default subscriptionSlice.reducer;
