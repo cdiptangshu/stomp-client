@@ -29,7 +29,7 @@ export default function ConnectForm() {
   const form = useFormik({
     initialValues: {
       endpoint: connection.endpoint,
-      headers: ''
+      headers: JSON.stringify(connection.headers, null, 2)
     },
     validate: (data) => {
       let errors = {};
@@ -91,6 +91,7 @@ export default function ConnectForm() {
             name="endpoint"
             placeholder="ws://localhost:8080/websocket"
             value={form.values.endpoint}
+            readOnly={connection.connected}
             onChange={(e) => form.setFieldValue('endpoint', e.target.value)}
             className={classNames({ 'p-invalid': isFormFieldInvalid('endpoint') })}
             onFocus={(e) => e.target.select()}
@@ -102,6 +103,7 @@ export default function ConnectForm() {
           <CodeEditor
             value={form.values.headers}
             onChange={onChangeHeaders}
+            editable={!connection.connected}
             showError={isFormFieldInvalid('headers')}
           />
           {getErrorMessage('headers')}

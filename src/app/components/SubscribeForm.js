@@ -17,7 +17,7 @@ function SubscribeForm({ disabled }) {
     setTopics(topics.filter((topic) => topic.id !== id));
   };
 
-  const subscribeItems = topics.map((topic) => (
+  const subscribeTopics = topics.map((topic) => (
     <SubscribeTopic
       key={topic.id}
       topic={topic}
@@ -40,7 +40,7 @@ function SubscribeForm({ disabled }) {
 
   return (
     <Panel header={getHeader()} toggleable>
-      <div className="flex flex-column gap-2">{subscribeItems}</div>
+      <div className="flex flex-column gap-2">{subscribeTopics}</div>
     </Panel>
   );
 }
