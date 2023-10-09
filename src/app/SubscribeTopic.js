@@ -8,7 +8,11 @@ import validator from 'validator';
 
 import { REGEX_TOPIC } from './constants';
 
-function SubscribeTopic({ topic = { id: '0', path: '', enabled: false }, onSubscribe, onDelete }) {
+function SubscribeTopic({
+  topic = { id: '0', path: '', subscribed: false },
+  onSubscribe,
+  onDelete
+}) {
   const [path, setPath] = useState(topic.path);
 
   const isValid = () => validator.matches(path, REGEX_TOPIC);
@@ -18,7 +22,7 @@ function SubscribeTopic({ topic = { id: '0', path: '', enabled: false }, onSubsc
   const handleSubscribe = (e) => {
     if (!isValid()) return;
 
-    onSubscribe({ id: topic.id, path, enabled: e.target.value });
+    onSubscribe({ id: topic.id, path, subscribed: e.target.value });
   };
 
   return (
@@ -27,7 +31,7 @@ function SubscribeTopic({ topic = { id: '0', path: '', enabled: false }, onSubsc
         name={name}
         value={path}
         onChange={(e) => setPath(e.target.value)}
-        readOnly={topic.enabled}
+        readOnly={topic.subscribed}
         placeholder="/topic/greetings"
         className="w-full"
         onFocus={(e) => e.target.select()}
@@ -39,7 +43,7 @@ function SubscribeTopic({ topic = { id: '0', path: '', enabled: false }, onSubsc
           offLabel=""
           onIcon="pi pi-bell"
           offIcon="pi pi-bell"
-          checked={topic.enabled}
+          checked={topic.subscribed}
           disabled={!isValid()}
           onChange={handleSubscribe}
         />

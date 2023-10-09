@@ -5,8 +5,8 @@ import { Panel } from 'primereact/panel';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { add, subscribe, remove } from './subscribe-slice';
 import SubscribeTopic from './SubscribeTopic';
-import { add, subscribe, remove } from './subscription-slice';
 
 function SubscribeForm({ disabled }) {
   const topics = useSelector((state) => state.subscription.topics);

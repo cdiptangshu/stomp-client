@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
 
-export const subscriptionSlice = createSlice({
+export const subscribeSlice = createSlice({
   name: 'subscription',
   initialState: {
     topics: []
   },
   reducers: {
     add: (state) => {
-      const topic = { id: nanoid(), path: '', enabled: false };
+      const topic = { id: nanoid(), path: '', subscribed: false };
       state.topics.push(topic);
     },
     remove: (state, action) => {
@@ -21,11 +21,11 @@ export const subscriptionSlice = createSlice({
       state.topics[index] = topic;
     },
     unsubscribeAll: (state) => {
-      state.topics.forEach((t) => (t.enabled = false));
+      state.topics.forEach((t) => (t.subscribed = false));
     }
   }
 });
 
-export const { add, remove, subscribe, unsubscribeAll } = subscriptionSlice.actions;
+export const { add, remove, subscribe, unsubscribeAll } = subscribeSlice.actions;
 
-export default subscriptionSlice.reducer;
+export default subscribeSlice.reducer;
