@@ -3,8 +3,8 @@ import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 
-import connectionListener from './connection-listener';
 import connectionReducer from './connection-slice';
+import disconnectionListener from './disconnection-listener';
 import subscriptionReducer from './subscription-slice';
 
 const persistConfig = {
@@ -21,7 +21,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: [connectionListener, thunk]
+  middleware: [disconnectionListener, thunk]
 });
 
 export const persistor = persistStore(store);
