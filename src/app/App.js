@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Dashboard from './components/Dashboard';
-import Footer from './components/Footer';
-import Topbar from './components/Topbar';
+import Dashboard from './Dashboard';
+import Footer from './Footer';
+import Topbar from './Topbar';
 
 import 'primereact/resources/themes/saga-green/theme.css';
 import 'primereact/resources/primereact.min.css';

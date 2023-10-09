@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import validator from 'validator';
 
 import CodeEditor from './CodeEditor';
-import { REGEX_TOPIC } from '../constants';
+import { REGEX_TOPIC } from './constants';
 
 function SendForm({ disabled }) {
   const form = useFormik({

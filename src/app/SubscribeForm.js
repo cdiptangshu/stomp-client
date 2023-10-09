@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
 import SubscribeTopic from './SubscribeTopic';
-import { add, subscribe, remove } from '../data/subscription-slice';
+import { add, subscribe, remove } from './subscription-slice';
 
 function SubscribeForm({ disabled }) {
   const topics = useSelector((state) => state.subscription.topics);

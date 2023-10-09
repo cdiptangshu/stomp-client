@@ -6,7 +6,7 @@ import { ToggleButton } from 'primereact/togglebutton';
 import PropTypes from 'prop-types';
 import validator from 'validator';
 
-import { REGEX_TOPIC } from '../constants';
+import { REGEX_TOPIC } from './constants';
 
 function SubscribeTopic({ topic = { id: '0', path: '', enabled: false }, onSubscribe, onDelete }) {
   const [path, setPath] = useState(topic.path);
