@@ -1,7 +1,7 @@
 import { createListenerMiddleware } from '@reduxjs/toolkit';
 
 import { disconnect } from './connection-slice';
-import { unsubscribeAll } from './subscribe-slice';
+import { unsubscribeAll } from './subscription-slice';
 
 const listenerMiddleware = createListenerMiddleware();
 

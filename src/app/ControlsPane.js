@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import ConnectForm from './ConnectForm';
-import SendForm from './SendForm';
+import PublishForm from './PublishForm';
 import SubscribeForm from './SubscribeForm';
 
 export default function ControlsPane() {
@@ -12,7 +12,7 @@ export default function ControlsPane() {
     <div className="flex flex-column gap-3">
       <ConnectForm />
       <SubscribeForm disabled={!connected} />
-      <SendForm disabled={!connected} />
+      <PublishForm disabled={!connected} />
     </div>
   );
 }

@@ -6,16 +6,21 @@ import { InputText } from 'primereact/inputtext';
 import { Panel } from 'primereact/panel';
 import { classNames } from 'primereact/utils';
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 import validator from 'validator';
 
 import CodeEditor from './CodeEditor';
 import { REGEX_TOPIC } from './constants';
+import { send } from './publishing-slice';
 
-function SendForm({ disabled }) {
+function PublishForm({ disabled }) {
+  const { topic, message } = useSelector((state) => state.publishing);
+  const dispatch = useDispatch();
+
   const form = useFormik({
     initialValues: {
-      topic: '',
-      message: ''
+      topic: topic,
+      message: JSON.stringify(message, null, 2)
     },
     validate: (data) => {
       let errors = {};
@@ -34,12 +39,11 @@ function SendForm({ disabled }) {
       return errors;
     },
     onSubmit: (data) => {
-      console.log(
-        'Sending to:',
-        data.topic,
-        ' - message',
-        data.message ? JSON.parse(data.message) : {}
-      );
+      const { topic } = data;
+      const message = data.message ? JSON.parse(data.message) : {};
+      console.log('Sending to:', topic, ' - message', message);
+
+      dispatch(send({ topic, message }));
     }
   });
 
@@ -100,8 +104,8 @@ function SendForm({ disabled }) {
   );
 }
 
-SendForm.propTypes = {
+PublishForm.propTypes = {
   disabled: PropTypes.bool
 };
 
-export default SendForm;
+export default PublishForm;

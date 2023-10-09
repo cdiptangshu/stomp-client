@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
 
-export const subscribeSlice = createSlice({
+export const subscriptionSlice = createSlice({
   name: 'subscription',
   initialState: {
     topics: []
@@ -26,6 +26,6 @@ export const subscribeSlice = createSlice({
   }
 });
 
-export const { add, remove, subscribe, unsubscribeAll } = subscribeSlice.actions;
+export const { add, remove, subscribe, unsubscribeAll } = subscriptionSlice.actions;
 
-export default subscribeSlice.reducer;
+export default subscriptionSlice.reducer;
