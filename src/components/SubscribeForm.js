@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 
 import { nanoid } from 'nanoid';
-import { BlockUI } from 'primereact/blockui';
 import { Panel } from 'primereact/panel';
-import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import SubscribeTopic from './SubscribeTopic';
 
-export default function SubscribeForm() {
-  const connected = useSelector((state) => state.connection.connected);
-
+function SubscribeForm({ disabled }) {
   const [topics, setTopics] = useState([
     { id: nanoid(), path: '/topic/0', enabled: true },
     { id: nanoid(), path: '/topic/1', enabled: false },
@@ -37,11 +34,19 @@ export default function SubscribeForm() {
     );
   };
 
+  if (disabled) {
+    return null;
+  }
+
   return (
     <Panel header={getHeader()} toggleable>
-      <BlockUI blocked={!connected}>
-        <div className="flex flex-column gap-2">{subscribeItems}</div>
-      </BlockUI>
+      <div className="flex flex-column gap-2">{subscribeItems}</div>
     </Panel>
   );
 }
+
+SubscribeForm.propTypes = {
+  disabled: PropTypes.bool
+};
+
+export default SubscribeForm;

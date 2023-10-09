@@ -5,12 +5,13 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { Panel } from 'primereact/panel';
 import { classNames } from 'primereact/utils';
+import PropTypes from 'prop-types';
 import validator from 'validator';
 
 import CodeEditor from './CodeEditor';
 import { REGEX_TOPIC } from '../common';
 
-export default function SendForm() {
+function SendForm({ disabled }) {
   const form = useFormik({
     initialValues: {
       topic: '',
@@ -64,6 +65,10 @@ export default function SendForm() {
     );
   };
 
+  if (disabled) {
+    return null;
+  }
+
   return (
     <Panel header={getHeader()} toggleable>
       <div className="flex flex-column gap-2">
@@ -94,3 +99,9 @@ export default function SendForm() {
     </Panel>
   );
 }
+
+SendForm.propTypes = {
+  disabled: PropTypes.bool
+};
+
+export default SendForm;

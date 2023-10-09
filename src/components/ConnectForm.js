@@ -13,12 +13,12 @@ import CodeEditor from './CodeEditor';
 import { connect, disconnect } from '../connectionSlice';
 
 export default function ConnectForm() {
-  const connected = useSelector((state) => state.connection.connected);
+  const connection = useSelector((state) => state.connection);
   const dispatch = useDispatch();
 
   const handleConnect = (endpoint, headers) => {
     console.log('Connecting to', endpoint, 'with headers', headers);
-    dispatch(connect());
+    dispatch(connect({ endpoint, headers }));
   };
 
   const handleDisconnect = () => {
@@ -28,7 +28,7 @@ export default function ConnectForm() {
 
   const form = useFormik({
     initialValues: {
-      endpoint: '',
+      endpoint: connection.endpoint,
       headers: ''
     },
     validate: (data) => {
@@ -71,12 +71,11 @@ export default function ConnectForm() {
     );
   };
 
+  const showConnectionStatus = () => (connection.connected ? <Badge severity="success" /> : null);
   const getHeader = () => {
     return (
       <span>
-        <i className="pi pi-link p-overlay-badge">
-          <Badge severity="success" />
-        </i>
+        <i className="pi pi-link p-overlay-badge">{showConnectionStatus()}</i>
         &nbsp;Connect
       </span>
     );
@@ -112,14 +111,14 @@ export default function ConnectForm() {
             type="submit"
             label="Connect"
             className="flex-1"
-            disabled={connected}
+            disabled={connection.connected}
             onClick={form.handleSubmit}
           />
           <Button
             label="Disconnect"
             severity="secondary"
             className="flex-1"
-            disabled={!connected}
+            disabled={!connection.connected}
             onClick={handleDisconnect}
           />
         </span>
