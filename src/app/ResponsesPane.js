@@ -14,13 +14,12 @@ export default function ResponsesPane() {
   const results = useSelector((state) => state.responses.messages);
   const dispatch = useDispatch();
 
+  const getCount = () => (results.length > 1 ? <Badge value={results.length} /> : null);
+
   const getHeader = () => {
     return (
       <div className="flex justify-content-between flex-wrap align-items-center">
-        <span>
-          Responses&nbsp;
-          <Badge value={results.length} />
-        </span>
+        <span>Responses&nbsp;{getCount()}</span>
         <Button
           icon="pi pi-trash"
           severity="secondary"
