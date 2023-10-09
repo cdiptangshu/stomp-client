@@ -4,13 +4,7 @@ import { nanoid } from 'nanoid';
 export const subscriptionSlice = createSlice({
   name: 'subscription',
   initialState: {
-    topics: [
-      { id: nanoid(), path: '/topic/0', enabled: true },
-      { id: nanoid(), path: '/topic/1', enabled: false },
-      { id: nanoid(), path: '/topic/2', enabled: true },
-      { id: nanoid(), path: '/topic/3', enabled: true },
-      { id: nanoid(), path: '/topic/4', enabled: false }
-    ]
+    topics: []
   },
   reducers: {
     add: (state) => {

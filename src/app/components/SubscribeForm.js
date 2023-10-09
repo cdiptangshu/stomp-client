@@ -28,7 +28,6 @@ function SubscribeForm({ disabled }) {
     <SubscribeTopic
       key={topic.id}
       topic={topic}
-      allowDelete={topics.length > 1}
       onSubscribe={handleSubscribe}
       onDelete={handleDelete}
     />
@@ -50,7 +49,7 @@ function SubscribeForm({ disabled }) {
     <Panel header={getHeader()} toggleable>
       <div className="flex flex-column gap-2">
         {subscribeTopics}
-        <Button icon="pi pi-plus" size="small" onClick={handleAdd} />
+        <Button icon="pi pi-plus" label="Add Topic" onClick={handleAdd} />
       </div>
     </Panel>
   );
