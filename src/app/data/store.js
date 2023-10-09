@@ -3,7 +3,8 @@ import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 
-import connectionReducer from './connectionSlice';
+import connectionReducer from './slices/connectionSlice';
+import subscriptionReducer from './slices/subscriptionSlice';
 
 const persistConfig = {
   key: 'root',
@@ -11,7 +12,8 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  connection: connectionReducer
+  connection: connectionReducer,
+  subscription: subscriptionReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

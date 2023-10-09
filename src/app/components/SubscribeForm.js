@@ -1,20 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { nanoid } from 'nanoid';
 import { Panel } from 'primereact/panel';
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 
 import SubscribeTopic from './SubscribeTopic';
+import { remove } from '../data/slices/subscriptionSlice';
 
 function SubscribeForm({ disabled }) {
-  const [topics, setTopics] = useState([
-    { id: nanoid(), path: '/topic/0', enabled: true },
-    { id: nanoid(), path: '/topic/1', enabled: false },
-    { id: nanoid(), path: '/topic/2', enabled: true }
-  ]);
+  const topics = useSelector((state) => state.subscription.topics);
+  const dispatch = useDispatch();
 
   const handleDelete = (id) => {
-    setTopics(topics.filter((topic) => topic.id !== id));
+    dispatch(remove(id));
   };
 
   const subscribeTopics = topics.map((topic) => (

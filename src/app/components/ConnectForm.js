@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import validator from 'validator';
 
 import CodeEditor from './CodeEditor';
-import { connect, disconnect } from '../connectionSlice';
+import { connect, disconnect } from '../data/slices/connectionSlice';
 
 export default function ConnectForm() {
   const connection = useSelector((state) => state.connection);
