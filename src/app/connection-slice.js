@@ -5,7 +5,7 @@ export const connectionSlice = createSlice({
   initialState: {
     connected: false,
     endpoint: '',
-    headers: {}
+    headers: ''
   },
   reducers: {
     connect: (state, action) => {

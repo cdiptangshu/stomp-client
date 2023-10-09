@@ -19,8 +19,8 @@ function PublishForm({ disabled }) {
 
   const form = useFormik({
     initialValues: {
-      topic: topic,
-      message: JSON.stringify(message, null, 2)
+      topic,
+      message
     },
     validate: (data) => {
       let errors = {};
@@ -39,9 +39,8 @@ function PublishForm({ disabled }) {
       return errors;
     },
     onSubmit: (data) => {
-      const { topic } = data;
-      const message = data.message ? JSON.parse(data.message) : {};
-      console.log('Sending to:', topic, ' - message', message);
+      const { topic, message } = data;
+      console.log('Sending message to', topic, '-', message);
 
       dispatch(send({ topic, message }));
     }

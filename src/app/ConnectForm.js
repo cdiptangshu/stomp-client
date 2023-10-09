@@ -13,7 +13,7 @@ import CodeEditor from './CodeEditor';
 import { connect, disconnect } from './connection-slice';
 
 export default function ConnectForm() {
-  const connection = useSelector((state) => state.connection);
+  const { connected, endpoint, headers } = useSelector((state) => state.connection);
   const dispatch = useDispatch();
 
   const handleConnect = (endpoint, headers) => {
@@ -28,8 +28,8 @@ export default function ConnectForm() {
 
   const form = useFormik({
     initialValues: {
-      endpoint: connection.endpoint,
-      headers: JSON.stringify(connection.headers, null, 2)
+      endpoint,
+      headers
     },
     validate: (data) => {
       let errors = {};
@@ -53,7 +53,7 @@ export default function ConnectForm() {
       return errors;
     },
     onSubmit: (data) => {
-      handleConnect(data.endpoint, data.headers ? JSON.parse(data.headers) : {});
+      handleConnect(data.endpoint, data.headers);
     }
   });
 
@@ -71,7 +71,7 @@ export default function ConnectForm() {
     );
   };
 
-  const showConnectionStatus = () => (connection.connected ? <Badge severity="success" /> : null);
+  const showConnectionStatus = () => (connected ? <Badge severity="success" /> : null);
   const getHeader = () => {
     return (
       <span>
@@ -80,6 +80,8 @@ export default function ConnectForm() {
       </span>
     );
   };
+
+  console.log('form.values.headers', form.values.headers);
 
   return (
     <Panel header={getHeader()} toggleable>
@@ -91,7 +93,7 @@ export default function ConnectForm() {
             name="endpoint"
             placeholder="ws://localhost:8080/websocket"
             value={form.values.endpoint}
-            readOnly={connection.connected}
+            readOnly={connected}
             onChange={(e) => form.setFieldValue('endpoint', e.target.value)}
             className={classNames({ 'p-invalid': isFormFieldInvalid('endpoint') })}
             onFocus={(e) => e.target.select()}
@@ -103,7 +105,7 @@ export default function ConnectForm() {
           <CodeEditor
             value={form.values.headers}
             onChange={onChangeHeaders}
-            editable={!connection.connected}
+            editable={!connected}
             showError={isFormFieldInvalid('headers')}
           />
           {getErrorMessage('headers')}
@@ -113,14 +115,14 @@ export default function ConnectForm() {
             type="submit"
             label="Connect"
             className="flex-1"
-            disabled={connection.connected}
+            disabled={connected}
             onClick={form.handleSubmit}
           />
           <Button
             label="Disconnect"
             severity="secondary"
             className="flex-1"
-            disabled={!connection.connected}
+            disabled={!connected}
             onClick={handleDisconnect}
           />
         </span>

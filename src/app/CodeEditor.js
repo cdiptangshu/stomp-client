@@ -6,7 +6,7 @@ import CodeMirror from '@uiw/react-codemirror';
 import { classNames } from 'primereact/utils';
 import PropTypes from 'prop-types';
 
-function CodeEditor({ value, onChange, editable = true, showError = false }) {
+function CodeEditor({ value = '', onChange, editable = true, showError = false }) {
   return (
     <CodeMirror
       extensions={[json()]}

@@ -22,6 +22,7 @@ function SubscribeTopic({
   const handleSubscribe = (e) => {
     if (!isValid()) return;
 
+    console.log(e.target.value ? 'Subscribing to' : 'Unsubscribing from', path);
     onSubscribe({ id: topic.id, path, subscribed: e.target.value });
   };
 

@@ -4,7 +4,7 @@ export const publishingSlice = createSlice({
   name: 'publishing',
   initialState: {
     topic: '',
-    message: {}
+    message: ''
   },
   reducers: {
     send: (state, action) => {
