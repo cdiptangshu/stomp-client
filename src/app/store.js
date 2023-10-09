@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import connectionReducer from './connection-slice';
 import disconnectionListener from './disconnection-listener';
 import publishingReducer from './publishing-slice';
+import responsesSlice from './responses-slice';
 import subscriptionReducer from './subscription-slice';
 
 const persistConfig = {
@@ -16,7 +17,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
   connection: connectionReducer,
   subscription: subscriptionReducer,
-  publishing: publishingReducer
+  publishing: publishingReducer,
+  responses: responsesSlice
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

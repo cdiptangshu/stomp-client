@@ -81,8 +81,6 @@ export default function ConnectForm() {
     );
   };
 
-  console.log('form.values.headers', form.values.headers);
-
   return (
     <Panel header={getHeader()} toggleable>
       <div className="flex flex-column gap-2">

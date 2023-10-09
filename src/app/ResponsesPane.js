@@ -3,22 +3,16 @@ import React from 'react';
 import { Badge } from 'primereact/badge';
 import { Button } from 'primereact/button';
 import { DataScroller } from 'primereact/datascroller';
+import { useSelector, useDispatch } from 'react-redux';
 
-import './ResponsesPane.css';
+import ClipboardCopy from './ClipboardCopy';
 import CodeEditor from './CodeEditor';
+import { clear } from './responses-slice';
+import './ResponsesPane.css';
 
 export default function ResponsesPane() {
-  const results = [...Array(10).keys()];
-
-  const data = {
-    name: {
-      first: 'Diptangshu',
-      last: 'Chakrabarty'
-    },
-    roll: 124,
-    subjects: ['Maths', 'Physics', 'Bengali']
-  };
-  const code = JSON.stringify(data, null, 2);
+  const results = useSelector((state) => state.responses.messages);
+  const dispatch = useDispatch();
 
   const getHeader = () => {
     return (
@@ -31,31 +25,38 @@ export default function ResponsesPane() {
           icon="pi pi-trash"
           severity="secondary"
           outlined
-          size="small"
           title="Clear"
           aria-label="clear"
+          onClick={handleClear}
         />
       </div>
     );
   };
 
-  const itemTemplate = () => {
+  const handleClear = () => {
+    dispatch(clear());
+  };
+
+  const itemTemplate = (data) => {
+    const formattedTimestamp = new Date(data.timestamp).toISOString();
+    const jsonString = JSON.stringify(data.message, null, 2);
+
     return (
       <div className="flex flex-column gap-1 p-2 m-1">
         <div className="flex justify-content-between flex-wrap align-items-center">
           <div className="text-sm text-color-secondary">
-            <span className="message-topic">/app/hello</span>
-            <span className="message-time">{new Date().toISOString()}</span>
+            <span className="message-topic">{data.topic}</span>
+            <span className="message-time">{formattedTimestamp}</span>
           </div>
-          <Button icon="pi pi-copy" severity="secondary" text title="Copy" aria-label="copy" />
+          <ClipboardCopy copyText={jsonString} />
         </div>
-        <CodeEditor value={code} editable={false} />
+        <CodeEditor value={jsonString} editable={false} />
       </div>
     );
   };
 
   const getEmptyMessage = () => {
-    return <div className="text-color-secondary p-2">No messages received.</div>;
+    return <div className="text-color-secondary p-2">Nothing to display.</div>;
   };
 
   return (
