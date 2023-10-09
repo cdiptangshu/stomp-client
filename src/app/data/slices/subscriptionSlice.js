@@ -13,9 +13,8 @@ export const subscriptionSlice = createSlice({
     ]
   },
   reducers: {
-    add: (state, action) => {
-      const topic = action.payload;
-      topic.enabled = true;
+    add: (state) => {
+      const topic = { id: nanoid(), path: '', enabled: false };
       state.topics.push(topic);
     },
     remove: (state, action) => {
@@ -23,14 +22,9 @@ export const subscriptionSlice = createSlice({
       state.topics = state.topics.filter((t) => t.id !== id);
     },
     subscribe: (state, action) => {
-      const id = action.payload;
-      const topic = state.topics.find((t) => t.id === id);
-      topic.enabled = true;
-    },
-    unsubscribe: (state, action) => {
-      const id = action.payload;
-      const topic = state.topics.find((t) => t.id === id);
-      topic.enabled = false;
+      const topic = action.payload;
+      const index = state.topics.findIndex((t) => t.id === topic.id);
+      state.topics[index] = topic;
     }
   }
 });

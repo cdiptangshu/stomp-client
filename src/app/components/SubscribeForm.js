@@ -1,15 +1,24 @@
 import React from 'react';
 
+import { Button } from 'primereact/button';
 import { Panel } from 'primereact/panel';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
 import SubscribeTopic from './SubscribeTopic';
-import { remove } from '../data/slices/subscriptionSlice';
+import { add, subscribe, remove } from '../data/slices/subscriptionSlice';
 
 function SubscribeForm({ disabled }) {
   const topics = useSelector((state) => state.subscription.topics);
   const dispatch = useDispatch();
+
+  const handleAdd = () => {
+    dispatch(add());
+  };
+
+  const handleSubscribe = (topic) => {
+    dispatch(subscribe(topic));
+  };
 
   const handleDelete = (id) => {
     dispatch(remove(id));
@@ -20,6 +29,7 @@ function SubscribeForm({ disabled }) {
       key={topic.id}
       topic={topic}
       allowDelete={topics.length > 1}
+      onSubscribe={handleSubscribe}
       onDelete={handleDelete}
     />
   ));
@@ -38,7 +48,10 @@ function SubscribeForm({ disabled }) {
 
   return (
     <Panel header={getHeader()} toggleable>
-      <div className="flex flex-column gap-2">{subscribeTopics}</div>
+      <div className="flex flex-column gap-2">
+        {subscribeTopics}
+        <Button icon="pi pi-plus" size="small" onClick={handleAdd} />
+      </div>
     </Panel>
   );
 }
