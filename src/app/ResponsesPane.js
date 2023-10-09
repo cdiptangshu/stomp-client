@@ -4,10 +4,10 @@ import { Badge } from 'primereact/badge';
 import { Button } from 'primereact/button';
 import { DataScroller } from 'primereact/datascroller';
 
-import './MessagesPane.css';
+import './ResponsesPane.css';
 import CodeEditor from './CodeEditor';
 
-export default function MessagesPane() {
+export default function ResponsesPane() {
   const results = [...Array(10).keys()];
 
   const data = {
@@ -24,7 +24,7 @@ export default function MessagesPane() {
     return (
       <div className="flex justify-content-between flex-wrap align-items-center">
         <span>
-          <i className="pi pi-envelope"></i>&nbsp;Messages&nbsp;
+          Responses&nbsp;
           <Badge value={results.length} />
         </span>
         <Button

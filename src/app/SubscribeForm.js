@@ -36,7 +36,7 @@ function SubscribeForm({ disabled }) {
   const getHeader = () => {
     return (
       <span>
-        <i className="pi pi-bell"></i>&nbsp;Subscribe
+        <i className="pi pi-paperclip"></i>&nbsp;Subscribe
       </span>
     );
   };

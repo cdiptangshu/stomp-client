@@ -75,7 +75,7 @@ export default function ConnectForm() {
   const getHeader = () => {
     return (
       <span>
-        <i className="pi pi-link p-overlay-badge">{showConnectionStatus()}</i>
+        <i className="pi pi-power-off p-overlay-badge">{showConnectionStatus()}</i>
         &nbsp;Connect
       </span>
     );

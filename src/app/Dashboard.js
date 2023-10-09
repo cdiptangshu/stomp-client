@@ -3,7 +3,7 @@ import React from 'react';
 import { Card } from 'primereact/card';
 
 import ControlsPane from './ControlsPane';
-import MessagesPane from './MessagesPane';
+import ResponsesPane from './ResponsesPane';
 
 export default function Dashboard() {
   return (
@@ -13,7 +13,7 @@ export default function Dashboard() {
           <ControlsPane />
         </div>
         <div className="mb-3 md:flex-1">
-          <MessagesPane />
+          <ResponsesPane />
         </div>
       </div>
     </Card>

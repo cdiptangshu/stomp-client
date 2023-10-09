@@ -41,8 +41,8 @@ function SubscribeTopic({
           title="Subscribe"
           onLabel=""
           offLabel=""
-          onIcon="pi pi-bell"
-          offIcon="pi pi-bell"
+          onIcon="pi pi-paperclip"
+          offIcon="pi pi-paperclip"
           checked={topic.subscribed}
           disabled={!isValid()}
           onChange={handleSubscribe}
