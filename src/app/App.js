@@ -11,7 +11,7 @@ import 'primeflex/primeflex.css';
 
 export default function App() {
   return (
-    <div className="mx-2">
+    <div>
       <Topbar />
       <Dashboard />
       <Footer />
