@@ -7,10 +7,12 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import SubscribeTopic from './SubscribeTopic';
 import { add, subscribe, remove } from './subscription-slice';
+import { useToast } from './ToastProvider';
 
 function SubscribeForm({ disabled }) {
   const topics = useSelector((state) => state.subscription.topics);
   const dispatch = useDispatch();
+  const { showToast } = useToast();
 
   const handleAdd = () => {
     dispatch(add());
@@ -18,6 +20,8 @@ function SubscribeForm({ disabled }) {
 
   const handleSubscribe = (topic) => {
     dispatch(subscribe(topic));
+    const summary = topic.subscribed ? 'Subscribed' : 'Unsubscribed';
+    showToast({ severity: 'info', summary: summary, detail: `Topic: ${topic.path}` });
   };
 
   const handleDelete = (id) => {

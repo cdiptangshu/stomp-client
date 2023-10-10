@@ -12,10 +12,12 @@ import validator from 'validator';
 import CodeEditor from './CodeEditor';
 import { REGEX_TOPIC } from './constants';
 import { send } from './publishing-slice';
+import { useToast } from './ToastProvider';
 
 function PublishForm({ disabled }) {
   const { topic, message } = useSelector((state) => state.publishing);
   const dispatch = useDispatch();
+  const { showToast } = useToast();
 
   const form = useFormik({
     initialValues: {
@@ -40,9 +42,9 @@ function PublishForm({ disabled }) {
     },
     onSubmit: (data) => {
       const { topic, message } = data;
-      console.log('Sending message to', topic, '-', message);
 
       dispatch(send({ topic, message }));
+      showToast({ severity: 'info', summary: 'Sent message', detail: `Topic: ${topic}` });
     }
   });
 

@@ -7,6 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import App from './app/App';
 import { persistor, store } from './app/store';
+import ToastProvider from './app/ToastProvider';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -14,7 +15,9 @@ root.render(
   <React.StrictMode store={store}>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <App />
+        <ToastProvider>
+          <App />
+        </ToastProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>
