@@ -36,14 +36,23 @@ export default function Footer() {
           <img
             style={{ height: '22px', marginLeft: '3px', verticalAlign: 'text-bottom' }}
             src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"
+            height="22px"
+            width="22px"
+            alt="CC"
           />
           <img
             style={{ height: '22px', marginLeft: '3px', verticalAlign: 'text-bottom' }}
             src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"
+            height="22px"
+            width="22px"
+            alt="BY"
           />
           <img
             style={{ height: '22px', marginLeft: '3px', verticalAlign: 'text-bottom' }}
             src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"
+            height="22px"
+            width="22px"
+            alt="SA"
           />
         </a>
       </p>

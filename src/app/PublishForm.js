@@ -76,10 +76,10 @@ function PublishForm({ disabled }) {
     <Panel header={getHeader()} toggleable>
       <div className="flex flex-column gap-2">
         <div className="flex flex-column gap-2">
-          <label htmlFor="send-topic">Topic</label>
+          <label htmlFor="topic">Topic</label>
           <InputText
-            id="send-topic"
-            name="send-topic"
+            id="topic"
+            name="topic"
             placeholder="/app/hello"
             value={form.values.topic}
             onChange={(e) => form.setFieldValue('topic', e.target.value)}
@@ -91,6 +91,7 @@ function PublishForm({ disabled }) {
         <div className="flex flex-column gap-2">
           <span>Message</span>
           <CodeEditor
+            name="message"
             value={form.values.message}
             onChange={onChangeMessage}
             showError={isFormFieldInvalid('message')}
