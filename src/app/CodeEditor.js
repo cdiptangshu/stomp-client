@@ -6,7 +6,7 @@ import CodeMirror from '@uiw/react-codemirror';
 import { classNames } from 'primereact/utils';
 import PropTypes from 'prop-types';
 
-function CodeEditor({ name, value = '', onChange, editable = true, showError = false }) {
+function CodeEditor({ name, value, onChange, editable, showError }) {
   return (
     <CodeMirror
       id={name}
@@ -22,6 +22,12 @@ function CodeEditor({ name, value = '', onChange, editable = true, showError = f
     />
   );
 }
+
+CodeEditor.defaultProps = {
+  value: '',
+  editable: true,
+  showError: false
+};
 
 CodeEditor.propTypes = {
   name: PropTypes.string,

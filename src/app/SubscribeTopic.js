@@ -8,11 +8,7 @@ import validator from 'validator';
 
 import { REGEX_TOPIC } from './constants';
 
-function SubscribeTopic({
-  topic = { id: '0', path: '', subscribed: false },
-  onSubscribe,
-  onDelete
-}) {
+function SubscribeTopic({ topic, onSubscribe, onDelete }) {
   const [path, setPath] = useState(topic.path);
 
   const isValid = () => validator.matches(path, REGEX_TOPIC);
@@ -59,6 +55,10 @@ function SubscribeTopic({
     </div>
   );
 }
+
+SubscribeTopic.defaultProps = {
+  topic: { id: '0', path: '', subscribed: false }
+};
 
 SubscribeTopic.propTypes = {
   topic: PropTypes.object,
