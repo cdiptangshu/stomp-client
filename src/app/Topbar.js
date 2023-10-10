@@ -1,8 +1,10 @@
 import React from 'react';
 
 export default function Topbar() {
+  const version = `v${process.env.REACT_APP_VERSION}`;
+
   return (
-    <div className="flex flex-wrap my-2 justify-content-center align-items-center">
+    <div className="flex flex-wrap my-2 justify-content-end align-items-center">
       <div>
         <svg width="30px" height="30px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -13,7 +15,7 @@ export default function Topbar() {
       </div>
       <div>
         <span className="text-lg font-bold p-2">STOMP Client</span>
-        <span className="text-sm text-secondary-color">v0.1</span>
+        <span className="text-sm text-secondary-color">{version}</span>
       </div>
     </div>
   );
