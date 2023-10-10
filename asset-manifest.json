@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/stomp-client/static/css/main.7cdc909b.css",
-    "main.js": "/stomp-client/static/js/main.c3fabf7e.js",
+    "main.js": "/stomp-client/static/js/main.7e578a94.js",
     "static/js/787.c60cd1be.chunk.js": "/stomp-client/static/js/787.c60cd1be.chunk.js",
     "static/media/primeicons.svg": "/stomp-client/static/media/primeicons.e1441b135b3ca9ad643c.svg",
     "static/media/primeicons.eot": "/stomp-client/static/media/primeicons.d44157bdfa026dc877af.eot",
@@ -10,11 +10,11 @@
     "static/media/primeicons.woff2": "/stomp-client/static/media/primeicons.78172950b335ccdb94e2.woff2",
     "index.html": "/stomp-client/index.html",
     "main.7cdc909b.css.map": "/stomp-client/static/css/main.7cdc909b.css.map",
-    "main.c3fabf7e.js.map": "/stomp-client/static/js/main.c3fabf7e.js.map",
+    "main.7e578a94.js.map": "/stomp-client/static/js/main.7e578a94.js.map",
     "787.c60cd1be.chunk.js.map": "/stomp-client/static/js/787.c60cd1be.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7cdc909b.css",
-    "static/js/main.c3fabf7e.js"
+    "static/js/main.7e578a94.js"
   ]
 }
