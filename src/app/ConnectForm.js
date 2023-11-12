@@ -14,9 +14,11 @@ import { connect, disconnect } from './connection-slice';
 import { useToast } from './ToastProvider';
 
 export default function ConnectForm() {
-  const { connected, endpoint, headers } = useSelector((state) => state.connection);
+  const { state, endpoint, headers } = useSelector((state) => state.connection);
   const dispatch = useDispatch();
   const { showToast } = useToast();
+
+  const connected = state === 'connected'
 
   const handleConnect = (endpoint, headers) => {
     dispatch(connect({ endpoint, headers }));
