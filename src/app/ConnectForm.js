@@ -11,23 +11,17 @@ import validator from 'validator';
 
 import CodeEditor from './CodeEditor';
 import { connect, disconnect } from './connection-slice';
-import { useToast } from './ToastProvider';
 
 export default function ConnectForm() {
-  const { state, endpoint, headers } = useSelector((state) => state.connection);
+  const { connected, endpoint, headers } = useSelector((state) => state.connection);
   const dispatch = useDispatch();
-  const { showToast } = useToast();
-
-  const connected = state === 'connected'
 
   const handleConnect = (endpoint, headers) => {
     dispatch(connect({ endpoint, headers }));
-    showToast({ severity: 'success', summary: 'Connected', detail: endpoint });
   };
 
   const handleDisconnect = () => {
     dispatch(disconnect());
-    showToast({ severity: 'warn', summary: 'Disconnected', detail: endpoint });
   };
 
   const form = useFormik({

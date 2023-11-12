@@ -2,14 +2,13 @@ import React from 'react';
 
 import { Button } from 'primereact/button';
 import { Panel } from 'primereact/panel';
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
 import SubscribeTopic from './SubscribeTopic';
 import { add, subscribe, remove } from './subscription-slice';
 import { useToast } from './ToastProvider';
 
-function SubscribeForm({ disabled }) {
+function SubscribeForm() {
   const topics = useSelector((state) => state.subscription.topics);
   const dispatch = useDispatch();
   const { showToast } = useToast();
@@ -45,10 +44,6 @@ function SubscribeForm({ disabled }) {
     );
   };
 
-  if (disabled) {
-    return null;
-  }
-
   return (
     <Panel header={getHeader()} toggleable>
       <div className="flex flex-column gap-2">
@@ -58,9 +53,5 @@ function SubscribeForm({ disabled }) {
     </Panel>
   );
 }
-
-SubscribeForm.propTypes = {
-  disabled: PropTypes.bool
-};
 
 export default SubscribeForm;

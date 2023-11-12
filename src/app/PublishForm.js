@@ -5,7 +5,6 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { Panel } from 'primereact/panel';
 import { classNames } from 'primereact/utils';
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import validator from 'validator';
 
@@ -14,7 +13,7 @@ import { REGEX_TOPIC } from './constants';
 import { send } from './publishing-slice';
 import { useToast } from './ToastProvider';
 
-function PublishForm({ disabled }) {
+function PublishForm() {
   const { topic, message } = useSelector((state) => state.publishing);
   const dispatch = useDispatch();
   const { showToast } = useToast();
@@ -70,10 +69,6 @@ function PublishForm({ disabled }) {
     );
   };
 
-  if (disabled) {
-    return null;
-  }
-
   return (
     <Panel header={getHeader()} toggleable>
       <div className="flex flex-column gap-2">
@@ -105,9 +100,5 @@ function PublishForm({ disabled }) {
     </Panel>
   );
 }
-
-PublishForm.propTypes = {
-  disabled: PropTypes.bool
-};
 
 export default PublishForm;
