@@ -69,11 +69,10 @@ export default function ConnectForm() {
     );
   };
 
-  const showConnectionStatus = () => (connected ? <Badge severity="success" /> : null);
   const getHeader = () => {
     return (
       <span>
-        <i className="pi pi-power-off p-overlay-badge">{showConnectionStatus()}</i>
+        <i className="pi pi-power-off"></i>
         &nbsp;Connect
       </span>
     );

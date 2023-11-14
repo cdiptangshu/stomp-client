@@ -18,10 +18,10 @@ function StompClient({ children }) {
   const { showToast } = useToast();
 
   const topics = useSelector((state) => state.subscription.topics);
-  const { endpoint, connected } = useSelector((state) => state.connection);
+  const { endpoint, headers, connected } = useSelector((state) => state.connection);
 
   const showError = () => {
-    showToast({ severity: 'error', summary: 'Operation failed', detail: 'Not connected!' });
+    showToast({ severity: 'error', summary: 'Operation failed', detail: `Endpoint: ${endpoint}` });
   };
 
   const callback = ({ headers, body }) => dispatch(log({ headers, body }));
@@ -29,11 +29,12 @@ function StompClient({ children }) {
   useEffect(() => {
     const _client = new Client({
       brokerURL: endpoint,
+      connectHeaders: headers,
       debug: console.log
     });
 
     _client.onConnect = () => {
-      showToast({ severity: 'success', summary: 'Connected', detail: endpoint });
+      showToast({ severity: 'success', summary: 'Connected', detail: `Endpoint: ${endpoint}` });
 
       topics.forEach(({ id, path, subscribed }) => {
         if (!subscribed) return;
@@ -49,6 +50,10 @@ function StompClient({ children }) {
     _client.onWebSocketError = () => {
       showError();
     };
+
+    _client.onStompError = (frame) => {
+      showToast({severity: 'error', summary: frame.command, detail: frame.headers.message})
+    }
 
     setClient(_client);
 
@@ -72,7 +77,7 @@ function StompClient({ children }) {
     showToast({ severity: 'info', summary: 'Sent message', detail: `Topic: ${topic}` });
   };
 
-  const subscribe = (topic) => {
+  const subscribeTopic = (topic) => {
     const { id, path, subscribed } = topic;
     if (!client) {
       showError();
@@ -87,9 +92,13 @@ function StompClient({ children }) {
   };
 
   return (
-    <StompClientContext.Provider value={{ client, sendMessage, subscribe }}>
-      {children}
-    </StompClientContext.Provider>
+    <>
+      {connected && (
+        <StompClientContext.Provider value={{ client, sendMessage, subscribeTopic }}>
+          {children}
+        </StompClientContext.Provider>
+      )}
+    </>
   );
 }
 

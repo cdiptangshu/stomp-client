@@ -18,12 +18,12 @@ function SubscribeForm() {
   };
 
   const handleSubscribe = (topic) => {
+    stompClient.subscribeTopic(topic);
     dispatch(subscribe(topic));
-    stompClient.subscribe(topic);
   };
 
   const handleDelete = (topic) => {
-    stompClient.subscribe({
+    stompClient.subscribeTopic({
       id: topic.id,
       path: topic.path,
       subscribed: false
