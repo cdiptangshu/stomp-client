@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { useFormik } from 'formik';
-import { Badge } from 'primereact/badge';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { Panel } from 'primereact/panel';

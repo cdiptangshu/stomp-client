@@ -29,7 +29,7 @@ function StompClient({ children }) {
   useEffect(() => {
     const _client = new Client({
       brokerURL: endpoint,
-      connectHeaders: headers?JSON.parse(headers): {},
+      connectHeaders: headers ? JSON.parse(headers) : {},
       debug: console.log
     });
 
@@ -52,9 +52,9 @@ function StompClient({ children }) {
     };
 
     _client.onStompError = (frame) => {
-      showToast({severity: 'error', summary: frame.command, detail: frame.headers.message})
-      setClient(undefined)
-    }
+      showToast({ severity: 'error', summary: frame.command, detail: frame.headers.message });
+      setClient(undefined);
+    };
 
     setClient(_client);
 
