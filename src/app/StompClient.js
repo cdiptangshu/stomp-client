@@ -21,7 +21,7 @@ function StompClient({ children }) {
   const { endpoint, headers, connected } = useSelector((state) => state.connection);
 
   const showError = () => {
-    showToast({ severity: 'error', summary: 'Operation failed', detail: `Endpoint: ${endpoint}` });
+    showToast({ severity: 'error', summary: 'No connection', detail: `Endpoint: ${endpoint}` });
   };
 
   const callback = ({ headers, body }) => dispatch(log({ headers, body }));
@@ -47,8 +47,12 @@ function StompClient({ children }) {
       setClient(undefined);
     };
 
-    _client.onWebSocketError = () => {
-      showError();
+    _client.onWebSocketError = (event) => {
+      showToast({
+        severity: 'error',
+        summary: 'WebSocket error',
+        detail: `Endpoint: ${event.target.url}`
+      });
     };
 
     _client.onStompError = (frame) => {
