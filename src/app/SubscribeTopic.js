@@ -48,7 +48,7 @@ function SubscribeTopic({ topic, onSubscribe, onDelete }) {
           severity="secondary"
           outlined
           title="Remove"
-          onClick={() => onDelete(topic.id)}
+          onClick={() => onDelete(topic)}
         />
       </span>
     </div>

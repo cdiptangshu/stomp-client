@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 
 import { Client } from '@stomp/stompjs';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { send } from './publishing-slice';
 import { log } from './responses-slice';
@@ -17,7 +17,15 @@ function StompClient({ children }) {
   const dispatch = useDispatch();
   const { showToast } = useToast();
 
+  const topics = useSelector((state) => state.subscription.topics);
+
   const url = 'ws://localhost:8080/gs-guide-websocket';
+
+  const showError = () => {
+    showToast({ severity: 'error', summary: 'Operation failed', detail: 'Not connected!' });
+  };
+
+  const callback = ({ headers, body }) => dispatch(log({ headers, body }));
 
   useEffect(() => {
     const _client = new Client({
@@ -25,15 +33,13 @@ function StompClient({ children }) {
       debug: console.log
     });
 
-    _client.onConnect = (frame) => {
-      console.log('Connected', frame);
-      _client.subscribe('/topic/greetings', (payload) => {
-        dispatch(
-          log({
-            headers: payload.headers,
-            body: payload.body
-          })
-        );
+    _client.onConnect = () => {
+      showToast({ severity: 'success', summary: 'Connected', detail: url });
+
+      topics.forEach(({ id, path, subscribed }) => {
+        if (!subscribed) return;
+
+        _client.subscribe(path, callback, { id });
       });
     };
 
@@ -52,7 +58,7 @@ function StompClient({ children }) {
 
   const sendMessage = ({ topic, message }) => {
     if (!client) {
-      showToast({ severity: 'error', summary: 'Failed to send', detail: 'Not connected!' });
+      showError();
       return;
     }
     client.publish({
@@ -63,8 +69,22 @@ function StompClient({ children }) {
     showToast({ severity: 'info', summary: 'Sent message', detail: `Topic: ${topic}` });
   };
 
+  const subscribe = (topic) => {
+    const { id, path, subscribed } = topic;
+    if (!client) {
+      showError();
+      return;
+    }
+
+    if (subscribed) {
+      client.subscribe(path, callback, { id });
+    } else {
+      client.unsubscribe(id);
+    }
+  };
+
   return (
-    <StompClientContext.Provider value={{ client, sendMessage }}>
+    <StompClientContext.Provider value={{ client, sendMessage, subscribe }}>
       {children}
     </StompClientContext.Provider>
   );
