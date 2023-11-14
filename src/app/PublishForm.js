@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { useFormik } from 'formik';
 import { Button } from 'primereact/button';
@@ -12,11 +12,14 @@ import CodeEditor from './CodeEditor';
 import { REGEX_TOPIC } from './constants';
 import { send } from './publishing-slice';
 import { useToast } from './ToastProvider';
+import { StompClientContext } from './StompClient';
 
 function PublishForm() {
   const { topic, message } = useSelector((state) => state.publishing);
   const dispatch = useDispatch();
   const { showToast } = useToast();
+
+  const ws = useContext(StompClientContext)
 
   const form = useFormik({
     initialValues: {
@@ -44,6 +47,7 @@ function PublishForm() {
 
       dispatch(send({ topic, message }));
       showToast({ severity: 'info', summary: 'Sent message', detail: `Topic: ${topic}` });
+      ws.sendMessage({topic,message})
     }
   });
 
