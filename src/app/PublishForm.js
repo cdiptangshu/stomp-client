@@ -13,13 +13,14 @@ import { REGEX_TOPIC } from './constants';
 import { StompClientContext } from './StompClient';
 
 function PublishForm() {
-  const { topic, message } = useSelector((state) => state.publishing);
+  const { topic, message, headers } = useSelector((state) => state.publishing);
   const stompClient = useContext(StompClientContext);
 
   const form = useFormik({
     initialValues: {
       topic,
-      message
+      message,
+      headers
     },
     validate: (data) => {
       let errors = {};
@@ -35,6 +36,11 @@ function PublishForm() {
       } else if (!validator.isJSON(data.message)) {
         errors.message = 'Invalid JSON message.';
       }
+
+      if (!validator.isEmpty(data.headers) && !validator.isJSON(data.headers)) {
+        errors.headers = 'Invalid JSON in headers.';
+      }
+
       return errors;
     },
     onSubmit: (data) => stompClient.sendMessage(data)
@@ -42,6 +48,10 @@ function PublishForm() {
 
   const onChangeMessage = React.useCallback((val) => {
     form.setFieldValue('message', val);
+  }, []);
+
+  const onChangeHeaders = React.useCallback((val) => {
+    form.setFieldValue('headers', val);
   }, []);
 
   const isFormFieldInvalid = (name) => !!(form.touched[name] && form.errors[name]);
@@ -87,6 +97,16 @@ function PublishForm() {
             showError={isFormFieldInvalid('message')}
           />
           {getErrorMessage('message')}
+        </div>
+        <div className="flex flex-column gap-2">
+          <span>Headers</span>
+          <CodeEditor
+            name="headers"
+            value={form.values.headers}
+            onChange={onChangeHeaders}
+            showError={isFormFieldInvalid('headers')}
+          />
+          {getErrorMessage('headers')}
         </div>
         <Button type="submit" label="Send" onClick={form.handleSubmit} />
       </div>

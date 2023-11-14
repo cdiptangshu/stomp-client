@@ -29,7 +29,7 @@ function StompClient({ children }) {
   useEffect(() => {
     const _client = new Client({
       brokerURL: endpoint,
-      connectHeaders: headers,
+      connectHeaders: headers?JSON.parse(headers): {},
       debug: console.log
     });
 
@@ -53,6 +53,7 @@ function StompClient({ children }) {
 
     _client.onStompError = (frame) => {
       showToast({severity: 'error', summary: frame.command, detail: frame.headers.message})
+      setClient(undefined)
     }
 
     setClient(_client);
@@ -64,16 +65,17 @@ function StompClient({ children }) {
     };
   }, [endpoint, connected]);
 
-  const sendMessage = ({ topic, message }) => {
+  const sendMessage = ({ topic, message, headers }) => {
     if (!client) {
       showError();
       return;
     }
     client.publish({
       destination: topic,
-      body: message
+      body: message,
+      headers: headers ? JSON.parse(headers) : {}
     });
-    dispatch(send({ topic, message }));
+    dispatch(send({ topic, message, headers }));
     showToast({ severity: 'info', summary: 'Sent message', detail: `Topic: ${topic}` });
   };
 
