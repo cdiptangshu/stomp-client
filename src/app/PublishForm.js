@@ -5,21 +5,16 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { Panel } from 'primereact/panel';
 import { classNames } from 'primereact/utils';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import validator from 'validator';
 
 import CodeEditor from './CodeEditor';
 import { REGEX_TOPIC } from './constants';
-import { send } from './publishing-slice';
-import { useToast } from './ToastProvider';
 import { StompClientContext } from './StompClient';
 
 function PublishForm() {
   const { topic, message } = useSelector((state) => state.publishing);
-  const dispatch = useDispatch();
-  const { showToast } = useToast();
-
-  const ws = useContext(StompClientContext)
+  const stompClient = useContext(StompClientContext);
 
   const form = useFormik({
     initialValues: {
@@ -42,13 +37,7 @@ function PublishForm() {
       }
       return errors;
     },
-    onSubmit: (data) => {
-      const { topic, message } = data;
-
-      dispatch(send({ topic, message }));
-      showToast({ severity: 'info', summary: 'Sent message', detail: `Topic: ${topic}` });
-      ws.sendMessage({topic,message})
-    }
+    onSubmit: (data) => stompClient.sendMessage(data)
   });
 
   const onChangeMessage = React.useCallback((val) => {
