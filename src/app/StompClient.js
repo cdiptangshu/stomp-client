@@ -51,6 +51,10 @@ function StompClient({ children }) {
   }, [url]);
 
   const sendMessage = ({ topic, message }) => {
+    if (!client) {
+      showToast({ severity: 'error', summary: 'Failed to send', detail: 'Not connected!' });
+      return;
+    }
     client.publish({
       destination: topic,
       body: message
