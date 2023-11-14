@@ -1,7 +1,7 @@
 {
   "name": "stomp-client",
   "homepage": "http://cdiptangshu.github.io/stomp-client",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "@codemirror/lang-json": "^6.0.1",
