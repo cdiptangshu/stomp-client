@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 import { Client } from '@stomp/stompjs';
 import PropTypes from 'prop-types';
@@ -13,10 +13,42 @@ const StompClientContext = createContext(null);
 export { StompClientContext };
 
 function StompClient({ children }) {
+  const [client, setClient] = useState(undefined);
   const dispatch = useDispatch();
   const { showToast } = useToast();
-  let client;
-  let ws;
+
+  const url = 'ws://localhost:8080/gs-guide-websocket';
+
+  useEffect(() => {
+    const _client = new Client({
+      brokerURL: url,
+      debug: console.log
+    });
+
+    _client.onConnect = (frame) => {
+      console.log('Connected', frame);
+      _client.subscribe('/topic/greetings', (payload) => {
+        dispatch(
+          log({
+            headers: payload.headers,
+            body: payload.body
+          })
+        );
+      });
+    };
+
+    _client.onWebSocketClose = () => {
+      setClient(undefined);
+    };
+
+    setClient(_client);
+
+    _client.activate();
+
+    return () => {
+      _client.deactivate();
+    };
+  }, [url]);
 
   const sendMessage = ({ topic, message }) => {
     client.publish({
@@ -27,31 +59,11 @@ function StompClient({ children }) {
     showToast({ severity: 'info', summary: 'Sent message', detail: `Topic: ${topic}` });
   };
 
-  if (!client) {
-    client = new Client({
-      brokerURL: 'ws://localhost:8080/gs-guide-websocket',
-      debug: console.log
-    });
-
-    client.onConnect = (frame) => {
-      console.log('Connected', frame);
-      client.subscribe('/topic/greetings', (payload) => {
-        dispatch(log({
-            headers: payload.headers,
-            body: payload.body
-        }))  
-      });
-    };
-
-    client.activate();
-
-    ws = {
-      client,
-      sendMessage
-    };
-  }
-
-  return <StompClientContext.Provider value={ws}>{children}</StompClientContext.Provider>;
+  return (
+    <StompClientContext.Provider value={{ client, sendMessage }}>
+      {children}
+    </StompClientContext.Provider>
+  );
 }
 
 StompClient.propTypes = {

@@ -36,9 +36,9 @@ export default function ResponsesPane() {
     dispatch(clear());
   };
 
-  const itemTemplate = ({headers, body, timestamp}) => {
+  const itemTemplate = ({ headers, body, timestamp }) => {
     const formattedTimestamp = new Date(timestamp).toISOString();
-    const isJson = headers['content-type'] === 'application/json'
+    const isJson = headers['content-type'] === 'application/json';
     const jsonString = isJson ? JSON.stringify(JSON.parse(body), null, 2) : body;
 
     return (
