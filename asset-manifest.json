@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/stomp-client/static/css/main.45e63f5e.css",
-    "main.js": "/stomp-client/static/js/main.65a9ba1f.js",
+    "main.js": "/stomp-client/static/js/main.74a3b5a4.js",
     "static/js/27.02771b1e.chunk.js": "/stomp-client/static/js/27.02771b1e.chunk.js",
     "static/media/primeicons.svg": "/stomp-client/static/media/primeicons.e1441b135b3ca9ad643c.svg",
     "static/media/primeicons.eot": "/stomp-client/static/media/primeicons.d44157bdfa026dc877af.eot",
@@ -12,6 +12,6 @@
   },
   "entrypoints": [
     "static/css/main.45e63f5e.css",
-    "static/js/main.65a9ba1f.js"
+    "static/js/main.74a3b5a4.js"
   ]
 }
