@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { StompSessionProvider } from 'react-stomp-hooks';
 
-import { connected } from './connection-slice';
 import PublishForm from './PublishForm';
 import SubscribeForm from './SubscribeForm';
 import { useToast } from './ToastProvider';
@@ -11,7 +10,6 @@ import { useToast } from './ToastProvider';
 function StompClientWapper() {
   const { connected, endpoint } = useSelector((state) => state.connection);
   const { showToast } = useToast();
-  const dispatch = useDispatch();
 
   if (!connected) return null;
 
