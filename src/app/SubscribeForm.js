@@ -7,12 +7,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { StompClientContext } from './StompClient';
 import SubscribeTopic from './SubscribeTopic';
 import { add, subscribe, remove } from './subscription-slice';
-import { useToast } from './ToastProvider';
 
 function SubscribeForm() {
   const topics = useSelector((state) => state.subscription.topics);
   const dispatch = useDispatch();
-  const { showToast } = useToast();
   const stompClient = useContext(StompClientContext);
 
   const handleAdd = () => {
@@ -21,8 +19,6 @@ function SubscribeForm() {
 
   const handleSubscribe = (topic) => {
     dispatch(subscribe(topic));
-    const summary = topic.subscribed ? 'Subscribed' : 'Unsubscribed';
-    showToast({ severity: 'info', summary: summary, detail: `Topic: ${topic.path}` });
     stompClient.subscribe(topic);
   };
 
@@ -32,7 +28,6 @@ function SubscribeForm() {
       path: topic.path,
       subscribed: false
     });
-    showToast({ severity: 'info', summary: 'Unsubscribed', detail: `Topic: ${topic.path}` });
     dispatch(remove(topic.id));
   };
 

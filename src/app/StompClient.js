@@ -18,8 +18,7 @@ function StompClient({ children }) {
   const { showToast } = useToast();
 
   const topics = useSelector((state) => state.subscription.topics);
-
-  const url = 'ws://localhost:8080/gs-guide-websocket';
+  const { endpoint, connected } = useSelector((state) => state.connection);
 
   const showError = () => {
     showToast({ severity: 'error', summary: 'Operation failed', detail: 'Not connected!' });
@@ -29,12 +28,12 @@ function StompClient({ children }) {
 
   useEffect(() => {
     const _client = new Client({
-      brokerURL: url,
+      brokerURL: endpoint,
       debug: console.log
     });
 
     _client.onConnect = () => {
-      showToast({ severity: 'success', summary: 'Connected', detail: url });
+      showToast({ severity: 'success', summary: 'Connected', detail: endpoint });
 
       topics.forEach(({ id, path, subscribed }) => {
         if (!subscribed) return;
@@ -47,14 +46,18 @@ function StompClient({ children }) {
       setClient(undefined);
     };
 
+    _client.onWebSocketError = () => {
+      showError();
+    };
+
     setClient(_client);
 
-    _client.activate();
+    if (connected) _client.activate();
 
     return () => {
       _client.deactivate();
     };
-  }, [url]);
+  }, [endpoint, connected]);
 
   const sendMessage = ({ topic, message }) => {
     if (!client) {
