@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 import { send } from './publishing-slice';
+import { log } from './responses-slice';
 import { useToast } from './ToastProvider';
 
 const StompClientContext = createContext(null);
@@ -34,8 +35,11 @@ function StompClient({ children }) {
 
     client.onConnect = (frame) => {
       console.log('Connected', frame);
-      client.subscribe('/topic/greetings', (greeting) => {
-        console.log('Received', JSON.parse(greeting.body).content);
+      client.subscribe('/topic/greetings', (payload) => {
+        dispatch(log({
+            headers: payload.headers,
+            body: payload.body
+        }))  
       });
     };
 

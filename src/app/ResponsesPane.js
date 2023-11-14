@@ -36,15 +36,16 @@ export default function ResponsesPane() {
     dispatch(clear());
   };
 
-  const itemTemplate = (data) => {
-    const formattedTimestamp = new Date(data.timestamp).toISOString();
-    const jsonString = JSON.stringify(data.message, null, 2);
+  const itemTemplate = ({headers, body, timestamp}) => {
+    const formattedTimestamp = new Date(timestamp).toISOString();
+    const isJson = headers['content-type'] === 'application/json'
+    const jsonString = isJson ? JSON.stringify(JSON.parse(body), null, 2) : body;
 
     return (
       <div className="flex flex-column gap-1 p-2 m-1">
         <div className="flex justify-content-between flex-wrap align-items-center">
           <div className="text-sm text-color-secondary">
-            <span className="message-topic">{data.topic}</span>
+            <span className="message-topic">{headers.destination}</span>
             <span className="message-time">{formattedTimestamp}</span>
           </div>
           <ClipboardCopy copyText={jsonString} />
@@ -62,7 +63,7 @@ export default function ResponsesPane() {
     <DataScroller
       value={results}
       itemTemplate={itemTemplate}
-      rows={5}
+      rows={10}
       inline
       header={getHeader()}
       emptyMessage={getEmptyMessage()}

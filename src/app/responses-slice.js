@@ -7,8 +7,8 @@ const responsesSlice = createSlice({
   },
   reducers: {
     log: (state, action) => {
-      const { topic, message } = action.payload;
-      state.messages.push({ topic, message, timestamp: Date.now() });
+      const { headers, body } = action.payload;
+      state.messages.push({ headers, body, timestamp: Date.now() });
     },
     clear: (state) => {
       state.messages = [];
