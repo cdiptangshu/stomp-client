@@ -1,7 +1,7 @@
 {
   "name": "stomp-client",
   "homepage": "http://cdiptangshu.github.io/stomp-client",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@codemirror/lang-json": "^6.0.1",
@@ -36,7 +36,9 @@
     "eject": "react-scripts eject",
     "lint": "eslint src",
     "lint:fix": "eslint --fix src",
-    "format": "prettier --write './src/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    "format": "prettier --write './src/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "docker:build": "docker image build -t cdiptangshu/stomp-client:$npm_package_version .",
+    "docker:push": "docker push cdiptangshu/stomp-client:$npm_package_version"
   },
   "eslintConfig": {
     "extends": [
