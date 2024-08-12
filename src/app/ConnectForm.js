@@ -32,7 +32,7 @@ export default function ConnectForm() {
       let errors = {};
 
       const options = {
-        protocols: ['ws', 'http', 'https'],
+        protocols: ['ws', 'wss', 'http', 'https'],
         require_protocol: true,
         require_tld: false
       };
